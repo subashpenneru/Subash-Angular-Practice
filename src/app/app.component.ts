@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Angular-Practice';
+
+  server = { name: 'server1', status: 'online' };
+
+  getServerName(event) {
+    this.server.name = event;
+  }
 }

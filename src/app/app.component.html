@@ -38,3 +38,7 @@
     <p *ngSwitchDefault>Value is {{value}}</p>
 </div>
 
+<p appBasicHighlight>Styling from basic highlight directive.</p>
+<p appBetterHighlight defaultColor="yellow" [highlightColor]="'orangered'">Styling from better highlight directive.</p>
+
+<div *customIf="onlyOdd"> This content is from custom "If" Directive </div>

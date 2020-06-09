@@ -9,12 +9,10 @@ import { of, Observable } from 'rxjs';
 export class AppComponent {
 
   asyncData: any;
+  filteredStatus = ''
 
   constructor() {
-    const obs = new Observable(this.asyncSubscriber);
-    obs.subscribe(res => {
-      this.asyncData = res;
-    });
+    this.asyncData = new Observable(this.asyncSubscriber);
   }
 
   servers = [

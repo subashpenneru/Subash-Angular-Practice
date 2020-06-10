@@ -1,0 +1,13 @@
+.btn-margin {
+    margin: 0 20px;
+}
+
+.home-active {
+    padding: 8px;
+    color: #222;
+    background-color: #bada55;
+}
+
+.active {
+    color: red;
+}

@@ -1,24 +1,20 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { User } from 'src/app/shared/user.model';
+import { UserService } from 'src/app/shared/user.service';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserComponent implements OnInit {
+export class UserComponent {
 
   @Input() userInfo: User;
 
-  @Output() selectedUser = new EventEmitter<string>();
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  constructor(private userServ: UserService) { }
 
   sendUserInfo(id: string) {
-    this.selectedUser.emit(id);
+    this.userServ.selectedId.next(id);
   }
 
 }

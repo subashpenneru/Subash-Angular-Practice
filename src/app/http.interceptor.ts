@@ -1,8 +1,9 @@
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpHeaders, HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { PostService } from './posts/post.service';
 import { Injectable } from '@angular/core';
 import { map, tap, catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class HttpInterceptorService implements HttpInterceptor {
@@ -10,7 +11,7 @@ export class HttpInterceptorService implements HttpInterceptor {
     constructor(private postServ: PostService) {}
 
     endPointUrl(url) {
-        let reqUrl = url.split('/');
+        let reqUrl = url.split(environment.apiUrl);
         return reqUrl[reqUrl.length - 1];
     }
 
@@ -47,6 +48,7 @@ export class HttpInterceptorService implements HttpInterceptor {
             catchError(event => {
                 if(event instanceof HttpErrorResponse) {
                     const endPoint = this.endPointUrl(event.url);
+                    console.log(endPoint)
                     if(endPoint !== 'posts') {
                         return this.postServ.handleError(event);
                     }

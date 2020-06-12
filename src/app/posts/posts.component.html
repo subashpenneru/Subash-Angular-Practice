@@ -1,0 +1,18 @@
+<div class="loader" *ngIf="!postsData; else postdata"></div>
+<ng-template #postdata>
+    <div class="posts">
+        <div class="post-item" *ngFor="let post of postsData" 
+            (click)="onSelectedSinglePost(post)">
+            <h5> {{post.title}} </h5>
+            <p>Author: {{ post.author}}</p>
+        </div>
+    </div>
+</ng-template>
+
+
+<div class="single-loader" *ngIf="isClicked"></div>
+<div class="single-post" *ngIf="!isClicked && singlePost">
+    <h2>{{singlePost.title}}</h2>
+    <h4>User Id: {{singlePost.userId}}</h4>
+    <p>{{singlePost.body}}</p>
+</div>

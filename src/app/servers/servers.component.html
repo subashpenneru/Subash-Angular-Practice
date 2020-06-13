@@ -1,5 +1,6 @@
 <div class="servers-container">
-    <div class="server" *ngFor="let server of serversData">
+    <div class="server" *ngFor="let server of serversData" 
+        (click)="navigateToServer(server.id)">
         <h1>{{server.name}}</h1>
         <div class="server-status" 
             [ngClass]="getServerStatusColor(server.status)">
@@ -7,3 +8,5 @@
         </div>
     </div>
 </div>
+
+<router-outlet></router-outlet>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Server } from '../shared/server.model';
+import { ServerService } from './server.service';
 
 @Component({
   selector: 'app-servers',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServersComponent implements OnInit {
 
-  constructor() { }
+  serversData: Server[];
+
+  constructor(private serverServ: ServerService) { }
 
   ngOnInit(): void {
+    this.serversData = this.serverServ.getServers();
+  }
+
+  getServerStatusColor(status) {
+    return {
+      'Online': status === 'online',
+      'Offline': status === 'offline'
+    }
   }
 
 }

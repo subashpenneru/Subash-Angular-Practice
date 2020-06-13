@@ -1,0 +1,39 @@
+.servers-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.server {
+    width: 310px;
+    /* padding: 5px; */
+    border: 1px solid #ccc;
+    text-align: center;
+    box-shadow: 0 3px 3px 3px #eee;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+.server:hover {
+    transform: scale(1.1, 1.1);
+}
+
+.server h1 {
+    padding: 5px;
+    background-color: #eee;
+    margin: 0;
+}
+
+.server-status {
+    height: 70px;
+    padding: 30px 10px;
+}
+
+.server-status.Online {
+    background-color: palegreen;
+}
+
+.server-status.Offline {
+    background-color: salmon;
+}

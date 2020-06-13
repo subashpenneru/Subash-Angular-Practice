@@ -1,1 +1,9 @@
-<p>servers works!</p>
+<div class="servers-container">
+    <div class="server" *ngFor="let server of serversData">
+        <h1>{{server.name}}</h1>
+        <div class="server-status" 
+            [ngClass]="getServerStatusColor(server.status)">
+            <p>Status: {{server.status}}</p>
+        </div>
+    </div>
+</div>

@@ -6,13 +6,11 @@
 }
 
 .server {
-    width: 310px;
-    /* padding: 5px; */
+    width: 340px;
     border: 1px solid #ccc;
     text-align: center;
     box-shadow: 0 3px 3px 3px #eee;
     margin-top: 30px;
-    cursor: pointer;
 }
 
 .server:hover {
@@ -28,6 +26,10 @@
 .server-status {
     height: 70px;
     padding: 30px 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .server-status.Online {
@@ -36,4 +38,14 @@
 
 .server-status.Offline {
     background-color: salmon;
+}
+
+
+.server-status .status-btn {
+    background-color: white;
+    margin: 0 10px;
+}
+
+.server-status .status-btn:hover {
+    color: #007bff;
 }

@@ -1,12 +1,18 @@
 <div class="servers-container">
-    <div class="server" *ngFor="let server of serversData" 
-        (click)="navigateToServer(server.id)">
+    <div class="server" *ngFor="let server of serversData">
         <h1>{{server.name}}</h1>
-        <div class="server-status" 
-            [ngClass]="getServerStatusColor(server.status)">
-            <p>Status: {{server.status}}</p>
+        <div class="server-status" [ngClass]="getServerStatusColor(server.status)">
+            <div><p>Status: {{server.status}}</p></div>
+            <div>
+                <span class="btn btn-outline-primary status-btn" 
+                    (click)="navigateToServer(server.id)">View</span>
+                <span class="btn btn-outline-primary status-btn"
+                    (click)="navigateToEditServer(server.id)">Edit</span>
+            </div>
         </div>
     </div>
 </div>
 
-<router-outlet></router-outlet>
+<div style="margin-top: 30px;">
+    <router-outlet></router-outlet>
+</div>

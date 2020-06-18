@@ -4,7 +4,13 @@
   </div>
   <div>
     <span class="main-header--item"
-      routerLink="/servers" routerLinkActive="active">Servers List</span>
+      routerLink="/servers" routerLinkActive="active">
+      Servers List
+    </span>
+    <span class="main-header--item" 
+      routerLink="/users" routerLinkActive="active">
+      Users
+    </span>
     <span class="main-header--item active" *ngIf="!isUserLogged"
       (click)="onLogIn()">Login</span>
     <span class="main-header--item active" *ngIf="isUserLogged"

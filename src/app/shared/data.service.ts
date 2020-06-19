@@ -3,12 +3,16 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Server } from './server.model';
 import { User } from './user.model';
 import { map, catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { throwError, BehaviorSubject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class DataService {
+
+    isServerUpdated = new BehaviorSubject(false);
+    navigationLoading = new BehaviorSubject(false);
+    childNavigationLoading = new BehaviorSubject(false);
     
     constructor(private http: HttpClient) {}
 
@@ -39,7 +43,16 @@ export class DataService {
     getUsers() {
         return this.http.get<User[]>('api/users')
             .pipe(
-                map(res => res),
+                map(res => {
+                    res.forEach(user => {
+                        if(user.id === 2) {
+                            user['role'] = 'Admin';
+                        } else {
+                            user['role'] = 'Developer';
+                        }
+                    });
+                    return res;
+                }),
                 catchError(error => this.handleError(error))
             )
     }

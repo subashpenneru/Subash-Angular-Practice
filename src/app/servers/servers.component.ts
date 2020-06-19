@@ -13,10 +13,17 @@ export class ServersComponent implements OnInit {
   serversData: Server[];
 
   constructor(private router: Router, 
-    private route: ActivatedRoute, private dataServ: DataService) { }
+    private route: ActivatedRoute, public dataServ: DataService) { }
 
   ngOnInit(): void {
     this.dataServ.getServers().subscribe(res => this.serversData = [...res]);
+
+    this.dataServ.isServerUpdated.subscribe(res => {
+      if(res) {
+        this.dataServ.getServers().subscribe(res => this.serversData = [...res]);
+        this.dataServ.isServerUpdated.next(false);
+      }
+    })
   }
 
   getServerStatusColor(status) {
@@ -30,8 +37,8 @@ export class ServersComponent implements OnInit {
     this.router.navigate([id], { relativeTo: this.route })
   }
 
-  navigateToEditServer(id: number) {
-    this.router.navigate([id, 'edit'], { relativeTo: this.route })
-  }
+  // navigateToEditServer(id: number) {
+  //   this.router.navigate([id, 'edit'], { relativeTo: this.route })
+  // }
 
 }

@@ -16,7 +16,12 @@ export class LazyLoadGuard implements CanLoad {
 
             return this.authServ.isAuthenticated().then(isLogged => {
                 if(isLogged) {
-                    return true;
+                    if(this.authServ.loggedUser.getValue()['role'] === 'Admin') {
+                        return true;
+                    } else {
+                        this.router.navigate(['/']);
+                        return false;
+                    }
                 } else {
                     this.router.navigate(['/']);
                     return false;

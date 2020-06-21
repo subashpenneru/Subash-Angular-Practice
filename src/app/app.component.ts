@@ -12,18 +12,13 @@ export class AppComponent {
 
   isUserLogged = false;
 
-  constructor(private authServ: AuthService, private router: Router, public dataServ: DataService) {
-    this.isUserLogged = this.authServ.isLoggedIn;
-  }
-
-  onLogIn() {
-    this.authServ.loggedIn();
-    this.isUserLogged = this.authServ.isLoggedIn;
+  constructor(private authServ: AuthService, private router: Router, 
+    public dataServ: DataService) {
+    this.authServ.isLoggedIn.subscribe(res => this.isUserLogged = res);
   }
 
   onLogOut() {
     this.authServ.loggedOut();
-    this.isUserLogged = this.authServ.isLoggedIn;
-    this.router.navigate(['/']);
+    window.location.reload();
   }
 }

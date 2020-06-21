@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { UsersComponent } from './users/users.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { InMemoryService } from './shared/inMemory.service';
+import { SigninComponent } from './users/auth/signin/signin.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { InMemoryService } from './shared/inMemory.service';
     AppComponent,
     HomeComponent,
     UsersComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,

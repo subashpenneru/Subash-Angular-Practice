@@ -12,7 +12,7 @@
       Users
     </span>
     <span class="main-header--item active" *ngIf="!isUserLogged"
-      (click)="onLogIn()">Login</span>
+      routerLink="/signin">Login</span>
     <span class="main-header--item active" *ngIf="isUserLogged"
     (click)="onLogOut()">Logout</span>
   </div>

@@ -6,11 +6,13 @@ import { AuthGuard } from './auth.guard';
 import { UsersComponent } from './users/users.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LazyLoadGuard } from './lazy-load.guard';
+import { SigninComponent } from './users/auth/signin/signin.component';
 
 const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
+    { path: 'signin', component: SigninComponent },
     { 
         path: 'servers', 
         loadChildren: () => import('./servers/server.module').then(mod => mod.ServerModule),

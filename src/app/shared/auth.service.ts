@@ -1,22 +1,25 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { User } from './user.model';
 
 @Injectable()
 export class AuthService {
 
-    isLoggedIn = false;
+    isLoggedIn = new BehaviorSubject(false);
+    loggedUser = new BehaviorSubject<User>(undefined);
 
     loggedIn() {
-        this.isLoggedIn = true;
+        this.isLoggedIn.next(true);
     }
 
     loggedOut() {
-        this.isLoggedIn = false;
+        this.isLoggedIn.next(false);
     }
 
     isAuthenticated() {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                resolve(this.isLoggedIn);
+                resolve(this.isLoggedIn.getValue());
             }, 1000);
         })
     }

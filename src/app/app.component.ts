@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Angular-Practice';
+
+  public addPostCheck = false;
+
+  onAdd() {
+    this.addPostCheck = true;
+  }
 }

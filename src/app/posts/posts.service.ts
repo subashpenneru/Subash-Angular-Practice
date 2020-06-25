@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import { Post } from './post.model';
-import {throwError} from 'rxjs/index';
+import {BehaviorSubject, throwError} from 'rxjs/index';
 import {catchError, map} from 'rxjs/internal/operators';
 
 @Injectable({
@@ -10,6 +10,7 @@ import {catchError, map} from 'rxjs/internal/operators';
 export class PostsService {
 
   url = 'api/posts';
+  isPostDeleted = new BehaviorSubject(false);
   constructor(private http: HttpClient) { }
 
   getPosts() {
@@ -41,6 +42,11 @@ export class PostsService {
   updatePost(postData: Post) {
     const headerOptions = new HttpHeaders(this.getHttpHeaderOptions());
     return this.http.put<any>(this.url + '/' + postData.id, postData, { headers: headerOptions });
+  }
+
+  deletePost(id: number) {
+    const headerOptions = new HttpHeaders(this.getHttpHeaderOptions());
+    return this.http.delete(this.url + '/' + id, { headers: headerOptions });
   }
 
   getHttpHeaderOptions() {

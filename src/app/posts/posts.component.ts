@@ -13,7 +13,13 @@ export class PostsComponent implements OnInit {
   public posts: Post[];
   public errorMessage: string;
 
-  constructor(private postSer: PostsService) { }
+  constructor(private postSer: PostsService) {
+    this.postSer.isPostDeleted.subscribe(isDeleted => {
+      if (isDeleted) {
+        this.getPosts();
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.getPosts();

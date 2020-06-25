@@ -7,9 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  public addPostCheck = false;
-
-  onAdd() {
-    this.addPostCheck = true;
-  }
+  constructor() {}
 }

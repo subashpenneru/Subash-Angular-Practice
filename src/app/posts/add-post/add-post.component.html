@@ -1,1 +1,18 @@
-<p>add-post works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="form-group">
+        <label for="postMessage"> Enter Post Message </label>
+        <input type="text" id="postMessage" #postMessage class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="postAuthor"> Enter Author Name </label>
+        <input type="text" id="postAuthor" #author class="form-control">
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-success" (click)="savePost()">Save</button>
+        <button class="btn btn-danger" (click)="resetPost()">Reset</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -11,19 +11,32 @@ import { PostsService } from './posts.service';
 export class PostsComponent implements OnInit {
 
   public posts: Post[];
-  public singlePost = false;
+  public errorMessage: string;
 
-  constructor(private postServ: PostsService) { }
+  constructor(private postSer: PostsService) { }
 
   ngOnInit(): void {
-    this.postServ.getPosts().subscribe(posts => {
+    this.getPosts();
+  }
+
+  getPosts() {
+    this.errorMessage = '';
+    this.posts = [];
+    this.postSer.getPosts().subscribe(posts => {
       this.posts = [...posts];
+    }, err => {
+      console.log(err);
     });
   }
 
-  getpost(postId: number) {
-    this.postServ.getSinglePost(postId).subscribe(post => {
-      console.log(post);
+  getPost(postId: number) {
+    this.errorMessage = '';
+    this.posts = [];
+    this.postSer.getSinglePost(postId).subscribe(post => {
+      this.posts = [{id: post.id, post: post.post, author: post.author}];
+    }, err => {
+      this.errorMessage = err.message;
+      console.log(err);
     });
   }
 }

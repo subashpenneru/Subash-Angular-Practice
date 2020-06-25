@@ -1,5 +1,10 @@
 <ul class="list-group">
-  <li class="list-group-item active"> Post Id: {{postData.id}} </li>
+  <li class="list-group-item active list-header">
+    <span>Post Id: {{postData.id}}</span>
+    <span class="btn btn-warning" [routerLink]="['/edit-post']"
+      [queryParams]="{postId: postData.id}"
+      fragment="loading">Edit</span>
+  </li>
   <li class="list-group-item"> Post: {{postData.post}} </li>
   <li class="list-group-item"> Author: {{postData.author}} </li>
 </ul>

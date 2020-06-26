@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-template-driven',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TemplateDrivenComponent implements OnInit {
 
+  genders = ['Male', 'Female'];
+  answer = '';
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onSubmit(form: NgForm) {
+    console.log(form);
+  }
 }

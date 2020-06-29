@@ -1,3 +1,11 @@
+<div class="alert alert-warning alert-dismissible" *ngIf="showAlert"
+     role="alert" style="position: fixed; width: 100%;">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="onCloseAlert()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <strong>Hey {{ userName }}</strong> your details saved successfully!
+</div>
+
 <div class="container">
   <div class="row">
     <h1>{{ formName }} Form</h1>
@@ -11,7 +19,7 @@
   </div>
   <div class="row" style="margin-top: 30px;">
     <div class="col-lg-8 col-lg-offset-2">
-      <app-template-driven *ngIf="isTemplate"></app-template-driven>
+      <app-template-driven *ngIf="isTemplate" (setUserName)="getUserName($event)" ></app-template-driven>
       <app-reactive *ngIf="!isTemplate"></app-reactive>
     </div>
   </div>

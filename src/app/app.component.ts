@@ -9,5 +9,15 @@ export class AppComponent {
 
   formName = 'Template-Driven';
   isTemplate = true;
+  showAlert = false;
+  userName: string;
 
+  onCloseAlert() {
+    this.showAlert = false;
+  }
+
+  getUserName(name) {
+    this.showAlert = true;
+    this.userName = name;
+  }
 }

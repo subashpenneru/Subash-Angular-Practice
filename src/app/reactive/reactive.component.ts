@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {AbstractControl, FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-reactive',
@@ -7,9 +9,84 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReactiveComponent implements OnInit {
 
+  @Output() setUserName = new EventEmitter<string>();
+  genders = ['Male', 'Female'];
+  userForm: FormGroup;
+  forbiddenNames = ['Subash', 'Sai'];
+  forbiddenEmails = ['subashpenneru@gmail.com'];
+
   constructor() { }
 
   ngOnInit(): void {
+    this.initForm();
   }
 
+  private initForm() {
+    this.userForm = new FormGroup({
+      userData: new FormGroup({
+        firstName: new FormControl('', [
+          Validators.required, this.setNameValidator.bind(this)
+        ]),
+        lastName: new FormControl(null, Validators.required)
+      }),
+      email: new FormControl(null, [
+        Validators.required, Validators.email
+      ], [this.setEmailValidator.bind(this)]),
+      password: new FormControl(null, Validators.required),
+      gender: new FormControl(null, Validators.required),
+      hobbies: new FormArray([])
+    });
+  }
+
+  getHobbiesControl(): FormArray {
+    return (this.userForm.get('hobbies') as FormArray);
+  }
+
+  onAddHobby() {
+    this.getHobbiesControl().push(new FormControl(null, Validators.required));
+  }
+
+  onDeleteHobby(index: number) {
+    this.getHobbiesControl().removeAt(index);
+  }
+
+  setNameValidator(control: FormControl): {[s: string]: boolean} {
+    if (control.value) {
+      const index = this.forbiddenNames.findIndex(
+        (name: string) => name.toLowerCase() === control.value.toLowerCase()
+      );
+      if (index >= 0) {
+        return { nameIsForbidden: true };
+      }
+    }
+    return null;
+  }
+
+  setEmailValidator(control: FormControl): Promise<any> | Observable<any> {
+    const promise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const index = this.forbiddenEmails.findIndex(
+          (email: string) => email === control.value
+        );
+        if (index >= 0) {
+          resolve({ emailIsForbidden: true });
+        } else {
+          resolve(null);
+        }
+      }, 1000);
+    });
+    return promise;
+  }
+
+  onSubmit() {
+    console.log(this.userForm);
+    const value = this.userForm.value;
+    const name = `${value.userData.firstName} ${value.userData.lastName}`;
+    this.setUserName.emit(name);
+    this.onClear();
+  }
+
+  onClear() {
+    this.userForm.reset();
+  }
 }

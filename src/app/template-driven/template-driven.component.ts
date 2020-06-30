@@ -18,7 +18,7 @@ export class TemplateDrivenComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    console.log(form);
+    console.log(form.value);
     if (form.valid) {
       this.setUserName.emit(`${form.value.userName.firstName} ${form.value.userName.lastName}`);
       form.reset();

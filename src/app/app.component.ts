@@ -6,5 +6,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Angular-Practice';
+
+  fruits = ['Mango', 'Orange', 'Banana'];
+
+  constructor() {}
+
+  /**
+   * 
+   * @param item it has to be typeOf string
+   * @author Subash
+   * Remove comments in this(app.component.ts) and child.component.ts files to see ChangeDetection.
+   */
+
+  addFruit(item: string) {
+    // this.fruits.push(item); // for default case
+    this.fruits = [...this.fruits, item];
+  }
 }

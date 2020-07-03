@@ -30,7 +30,7 @@
         </div>
       </div>
 <!--      Img-->
-      <div class="row">
+      <div class="row" *ngIf="imagePath.value">
         <div class="col-xs-12">
           <img class="img-responsive" style="height: 300px; width: 300px;"
                [src]="imagePath.value" alt="image">
@@ -49,7 +49,7 @@
 
       <div class="row">
         <div class="col-xs-12" formArrayName="ingredients">
-          <div class="row" *ngFor="let ingCtrl of getRecipeIngControls(); let i = index"
+          <div class="row" *ngFor="let ingCtrl of recipeIngControls; let i = index"
                [formGroupName]="i" style="margin-top: 10px">
             <div class="col-xs-8">
               <input type="text" class="form-control" formControlName="name">

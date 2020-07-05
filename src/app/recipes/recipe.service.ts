@@ -1,34 +1,18 @@
 import { Recipe } from './recipe.model';
 import { Injectable } from '@angular/core';
 import {Ingredient} from '../shared/ingredient.model';
-import {ShoppingListService} from '../shopping-list/shopping-list.service';
 import {Subject} from 'rxjs';
+import {Store} from '@ngrx/store';
+import * as SLActions from '../shopping-list/store/shopping-list.actions';
+import * as fromApp from '../store/app.reducer';
 
 @Injectable()
 export class RecipeService {
 
   recipesChanged = new Subject<Recipe[]>();
-  // private recipes: Recipe[] = [
-  //   new Recipe(
-  //     'A Test Recipe',
-  //     'This is a Test',
-  //     '../../../assets/images/Recipe_logo.jpeg',
-  //     [
-  //       new Ingredient('Meat', 1),
-  //       new Ingredient('French Fries', 20)
-  //     ]),
-  //   new Recipe(
-  //     'Another Test Recipe',
-  //     'This is Another Test',
-  //     '../../../assets/images/Recipe_logo.jpeg',
-  //     [
-  //       new Ingredient('Buns', 2),
-  //       new Ingredient('Meat', 1)
-  //     ])
-  // ];
   private recipes: Recipe[] = [];
 
-  constructor(private slSer: ShoppingListService) {}
+  constructor(private store: Store<fromApp.AppState>) {}
 
   setRecipes(recipes: Recipe[]) {
     this.recipes = recipes;
@@ -44,7 +28,7 @@ export class RecipeService {
   }
 
   addIngredientsToShoppingList(ingredients: Ingredient[]) {
-    this.slSer.addIngredients(ingredients);
+    this.store.dispatch(new SLActions.AddIngredients(ingredients));
   }
 
   addRecipe(recipe: Recipe): void {

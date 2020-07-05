@@ -6,7 +6,7 @@ import {Actions, ofType} from '@ngrx/effects';
 import {map, switchMap, take} from 'rxjs/operators';
 
 import {Recipe} from './recipe.model';
-import * as fromApp from '../store/app.reducer';
+import * as fromRecipes from './store/recipe.reducer';
 import * as RecipesActions from './store/recipe.actions';
 
 @Injectable({
@@ -14,7 +14,7 @@ import * as RecipesActions from './store/recipe.actions';
 })
 export class RecipesResolverService implements Resolve<Recipe[]> {
 
-  constructor(private store: Store<fromApp.AppState>, private actions$: Actions) {
+  constructor(private store: Store<fromRecipes.RecipeState>, private actions$: Actions) {
   }
 
   resolve(route: ActivatedRouteSnapshot,

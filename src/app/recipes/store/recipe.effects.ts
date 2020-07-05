@@ -7,12 +7,12 @@ import {Store} from '@ngrx/store';
 import * as RecipesActions from './recipe.actions';
 import {Recipe} from '../recipe.model';
 import {environment} from '../../../environments/environment';
-import * as fromApp from '../../store/app.reducer';
+import * as fromRecipes from '../store/recipe.reducer';
 
 @Injectable()
 export class RecipeEffects {
   constructor(private actions$: Actions, private http: HttpClient,
-              private store: Store<fromApp.AppState>) {
+              private store: Store<fromRecipes.RecipeState>) {
   }
 
   @Effect()

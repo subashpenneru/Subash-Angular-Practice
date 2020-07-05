@@ -3,7 +3,7 @@ import { Recipe } from '../recipe.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {Store} from '@ngrx/store';
-import * as fromApp from '../../store/app.reducer';
+import * as fromRecipes from '../store/recipe.reducer';
 import {map} from 'rxjs/operators';
 
 @Component({
@@ -17,7 +17,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   recipeSub: Subscription;
 
   constructor(private router: Router,
-              private route: ActivatedRoute, private store: Store<fromApp.AppState>) { }
+              private route: ActivatedRoute, private store: Store<fromRecipes.RecipeState>) { }
 
   ngOnInit(): void {
     this.recipeSub = this.store.select('recipes')

@@ -1,5 +1,10 @@
 import {Recipe} from '../recipe.model';
 import * as RecipeActions from './recipe.actions';
+import * as fromApp from '../../store/app.reducer';
+
+export interface RecipeState extends fromApp.AppState {
+  recipes: State;
+}
 
 export interface State {
   recipes: Recipe[];

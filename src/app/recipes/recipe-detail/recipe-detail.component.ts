@@ -4,7 +4,7 @@ import {Store} from '@ngrx/store';
 import {map, switchMap} from 'rxjs/operators';
 
 import { Recipe } from '../recipe.model';
-import * as fromApp from '../../store/app.reducer';
+import * as fromRecipes from '../store/recipe.reducer';
 import * as RecipesActions from '../store/recipe.actions';
 import * as SLActions from '../../shopping-list/store/shopping-list.actions';
 
@@ -19,7 +19,7 @@ export class RecipeDetailComponent implements OnInit {
   id: number;
 
   constructor(private route: ActivatedRoute, private router: Router,
-              private store: Store<fromApp.AppState>) { }
+              private store: Store<fromRecipes.RecipeState>) { }
 
   ngOnInit(): void {
     this.route.params.pipe(

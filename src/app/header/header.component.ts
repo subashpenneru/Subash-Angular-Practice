@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../auth/auth.service';
 import {Router} from '@angular/router';
+import {Store} from '@ngrx/store';
+import {map} from 'rxjs/operators';
+
+import * as fromApp from '../store/app.reducer';
+import * as AuthActions from '../auth/store/auth.actions';
 
 @Component({
   selector: 'app-header',
@@ -11,18 +15,20 @@ export class HeaderComponent implements OnInit {
 
   isAuthenticated = false;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private store: Store<fromApp.AppState>, private router: Router) { }
 
   ngOnInit(): void {
-    this.authService.user.subscribe(user => {
-      this.isAuthenticated = !!user;
-      if (!this.isAuthenticated) {
-        this.router.navigate(['/auth/sign-in']);
-      }
+    this.store.select('auth').pipe(
+      map(authState => authState.user)
+    ).subscribe(userData => {
+      this.isAuthenticated = !!userData;
+      // if (!this.isAuthenticated) {
+      //   this.router.navigate(['/auth/sign-in']);
+      // }
     });
   }
 
   onLogout() {
-    this.authService.logout();
+    this.store.dispatch(new AuthActions.LogoutStart());
   }
 }

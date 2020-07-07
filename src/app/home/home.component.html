@@ -2,7 +2,13 @@
   <div class="row">
     <div class="col-xs-12">
       <h1>Counter</h1>
-      <p>Login to work on Counter</p>
+      <p *ngIf="!isUserLoggedIn; else logged">Login to work on Counter</p>
+      <ng-template #logged>
+        <p>
+          <button class="btn btn-primary" routerLink="/counter">Click</button>
+          here to play around on Counter.
+        </p>
+      </ng-template>
     </div>
   </div>
 </div>

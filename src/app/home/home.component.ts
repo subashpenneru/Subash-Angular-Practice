@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {Store} from '@ngrx/store';
+import {map} from 'rxjs/operators';
+
+import * as fromApp from '../store/app.reducer';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  isUserLoggedIn = false;
+
+  constructor(private store: Store<fromApp.AppState>) { }
 
   ngOnInit(): void {
+    this.store.select('auth').pipe(
+      map(authState => authState.user)
+    ).subscribe(user => {
+      this.isUserLoggedIn = !!user;
+    });
   }
 
 }

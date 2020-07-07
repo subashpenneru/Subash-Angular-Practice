@@ -1,5 +1,8 @@
 <div class="container">
-  <div class="row">
+  <div class="row" *ngIf="isLoading">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+  <div class="row" *ngIf="!isLoading">
     <form #f="ngForm" (ngSubmit)="onSubmit(f)">
       <div class="col-xs-6 col-xs-offset-3">
         <div class="form-group">

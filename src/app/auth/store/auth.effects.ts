@@ -24,7 +24,7 @@ export class AuthEffects {
       const user: User = {
         email: authState.payload,
         token: this.authService.getToken(),
-        tokenExpDate: new Date(new Date().getTime() + this.expiresIn * 100)
+        tokenExpDate: new Date(new Date().getTime() + this.expiresIn * 1000)
       };
       return new Observable((observer: Observer<User>) => {
         setTimeout(() => {
@@ -35,7 +35,6 @@ export class AuthEffects {
         tap(userData => {
           localStorage.setItem('userData', JSON.stringify(userData));
           const timer = new Date(userData.tokenExpDate).getTime() - new Date().getTime();
-          console.log(timer);
           this.authService.setTimer(timer);
           this.router.navigate(['/counter']);
         }),

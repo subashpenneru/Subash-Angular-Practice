@@ -1,25 +1,41 @@
-import {Component, OnInit} from '@angular/core';
-import {CounterService} from './counter.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Observable, Subscription} from 'rxjs';
+import {Store} from '@ngrx/store';
+
 import {Counter} from './counter.model';
+import * as fromCounter from './store/counter.reducer';
+import * as CounterActions from './store/counter.actions';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-counter',
   templateUrl: './counter.component.html',
   styleUrls: ['./counter.component.css']
 })
-export class CounterComponent implements OnInit {
+export class CounterComponent implements OnInit, OnDestroy {
 
-  counterValue = 0;
+  counterValue: Observable<fromCounter.State>;
   savedValues: Counter[] = [];
+  private savedSub: Subscription;
 
-  constructor(private counterService: CounterService) { }
+  constructor(private store: Store<fromCounter.CounterState>) { }
 
   ngOnInit(): void {
-    this.counterService.counter.subscribe(val => this.counterValue = val);
-    this.counterService.counterValuesChanged.subscribe(values => this.savedValues = values);
+    this.counterValue = this.store.select('counter');
+
+    this.savedSub = this.store.select('counter')
+      .pipe(
+        map(counterState => counterState.savedValues)
+      ).subscribe(res => this.savedValues  = res);
   }
 
   onDelete(id: number) {
-    this.counterService.deleteCounterValue(id);
+    this.store.dispatch(new CounterActions.Delete(id));
+  }
+
+  ngOnDestroy(): void {
+    if (this.savedSub) {
+      this.savedSub.unsubscribe();
+    }
   }
 }

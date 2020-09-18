@@ -1,18 +1,19 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
+import { BehaviorSubject } from "rxjs";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
-
-  fruits = ['Mango', 'Orange', 'Banana'];
+  // fruits = ["Mango", "Orange", "Banana"];
+  fruits = new BehaviorSubject(["Mango", "Orange", "Banana"]);
 
   constructor() {}
 
   /**
-   * 
+   *
    * @param item it has to be typeOf string
    * @author Subash
    * Remove comments in this(app.component.ts) and child.component.ts files to see ChangeDetection.
@@ -20,6 +21,7 @@ export class AppComponent {
 
   addFruit(item: string) {
     // this.fruits.push(item); // for default case
-    this.fruits = [...this.fruits, item];
+    // this.fruits = [...this.fruits, item];
+    this.fruits.next([item]);
   }
 }

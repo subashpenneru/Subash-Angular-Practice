@@ -1,27 +1,46 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, OnChanges, SimpleChanges, DoCheck } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ChangeDetectionStrategy,
+  OnChanges,
+  SimpleChanges,
+  DoCheck,
+  ChangeDetectorRef,
+} from "@angular/core";
+import { Observable } from "rxjs";
 
 @Component({
-  selector: 'app-child',
-  templateUrl: './child.component.html',
-  styleUrls: ['./child.component.css'],
-  // changeDetection: ChangeDetectionStrategy.Default
-  changeDetection: ChangeDetectionStrategy.OnPush
+  selector: "app-child",
+  templateUrl: "./child.component.html",
+  styleUrls: ["./child.component.css"],
+  // changeDetection: ChangeDetectionStrategy.Default,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChildComponent implements OnChanges, OnInit, DoCheck {
+  // @Input() data: string[];
+  @Input() data: Observable<any>;
 
-  @Input() data: string[];
+  food: string[] = [];
 
-  constructor() { }
+  constructor(private cd: ChangeDetectorRef) {}
 
   ngOnChanges(changes: SimpleChanges) {
     console.log(changes);
   }
 
   ngOnInit(): void {
+    this.data.subscribe((fruit) => {
+      this.food = [...this.food, ...fruit];
+      this.cd.markForCheck();
+    });
   }
 
   ngDoCheck() {
-    console.log('[DOCHECK]', this.data);
+    // console.log("[DOCHECK]", this.data);
   }
 
+  onRefresh() {
+    this.cd.detectChanges();
+  }
 }

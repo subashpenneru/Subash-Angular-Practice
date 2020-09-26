@@ -1,10 +1,28 @@
-<p>App Component</p>
+<div class="container">
+  <p>App Component</p>
 
-<button (click)="onChangeStatus()">Change Status</button>
-<button (click)="onChange()">Change Server</button>
+  <button class="btn btn-primary mr-3" (click)="onChangeStatus()">
+    Change Status
+  </button>
+  <button class="btn btn-primary" (click)="onChange()">Change Server</button>
 
-<hr>
+  <hr />
 
-<app-server [server]="server" *ngIf="server.status === 'online'">
-  <p #serverContent>This {{server.name}} content is in [app-server] tag from App Component</p>
-</app-server>
+  <app-server [server]="server" *ngIf="server.status === 'offline'">
+    <p #serverContent>
+      This {{ server.name }} content is in [app-server] tag from App Component
+    </p>
+  </app-server>
+
+  <hr />
+
+  <app-child [serverData]="serverList">
+    <p #serverItemContent>view children</p>
+  </app-child>
+
+  <hr />
+
+  <app-child *ngFor="let server of serverList">
+    <p #serverItemContent>{{ server.name }} - {{ server.status }}</p>
+  </app-child>
+</div>

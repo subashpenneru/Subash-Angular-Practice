@@ -1,0 +1,17 @@
+<h4>Child Component</h4>
+
+<ul class="list-group" *ngIf="serverData && serverData.length > 0">
+  <li
+    class="list-group-item"
+    [ngClass]="{
+      green: server.status === 'online',
+      red: server.status === 'offline'
+    }"
+    *ngFor="let server of serverData"
+    #serverItem
+  >
+    {{ server.name }}
+  </li>
+</ul>
+
+<ng-content></ng-content>

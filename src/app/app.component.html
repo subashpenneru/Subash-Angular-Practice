@@ -1,6 +1,16 @@
-<div class="alert alert-warning alert-dismissible" *ngIf="showAlert"
-     role="alert" style="position: fixed; width: 100%;">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="onCloseAlert()">
+<div
+  class="alert alert-warning alert-dismissible"
+  *ngIf="showAlert"
+  role="alert"
+  style="position: fixed; width: 100%; z-index: 999"
+>
+  <button
+    type="button"
+    class="close"
+    data-dismiss="alert"
+    aria-label="Close"
+    (click)="onCloseAlert()"
+  >
     <span aria-hidden="true">&times;</span>
   </button>
   <strong>Hey {{ userName }}</strong> your details saved successfully!
@@ -11,18 +21,30 @@
     <h1>{{ formName }} Form</h1>
   </div>
   <div class="row">
-    <button class="btn btn-primary"
-            (click)="isTemplate = true; formName = 'Template-Driven'">Template</button>
-    <button class="btn btn-primary"
-            (click)="isTemplate = false; formName = 'Reactive'"
-            style="margin-left: 20px">Reactive</button>
+    <button
+      class="btn btn-primary"
+      (click)="isTemplate = true; formName = 'Template-Driven'"
+    >
+      Template
+    </button>
+    <button
+      class="btn btn-primary"
+      (click)="isTemplate = false; formName = 'Reactive'"
+      style="margin-left: 20px"
+    >
+      Reactive
+    </button>
   </div>
-  <div class="row" style="margin-top: 30px;">
+  <div class="row" style="margin-top: 30px">
     <div class="col-lg-8 col-lg-offset-2">
-      <app-template-driven *ngIf="isTemplate"
-                           (setUserName)="getUserName($event)" ></app-template-driven>
-      <app-reactive *ngIf="!isTemplate"
-                    (setUserName)="getUserName($event)" ></app-reactive>
+      <app-template-driven
+        *ngIf="isTemplate"
+        (setUserName)="getUserName($event)"
+      ></app-template-driven>
+      <app-reactive
+        *ngIf="!isTemplate"
+        (setUserName)="getUserName($event)"
+      ></app-reactive>
     </div>
   </div>
 </div>

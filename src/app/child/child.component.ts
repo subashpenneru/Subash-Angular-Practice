@@ -7,14 +7,13 @@ import {
   SimpleChanges,
   DoCheck,
   ChangeDetectorRef,
-} from "@angular/core";
-import { Observable } from "rxjs";
+} from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
-  selector: "app-child",
-  templateUrl: "./child.component.html",
-  styleUrls: ["./child.component.css"],
-  // changeDetection: ChangeDetectionStrategy.Default,
+  selector: 'app-child',
+  templateUrl: './child.component.html',
+  styleUrls: ['./child.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChildComponent implements OnChanges, OnInit, DoCheck {
@@ -37,7 +36,7 @@ export class ChildComponent implements OnChanges, OnInit, DoCheck {
   }
 
   ngDoCheck() {
-    // console.log("[DOCHECK]", this.data);
+    console.log('[DOCHECK]');
   }
 
   onRefresh() {

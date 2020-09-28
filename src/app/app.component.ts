@@ -1,14 +1,14 @@
-import { Component } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
+import { Component } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"],
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  // fruits = ["Mango", "Orange", "Banana"];
-  fruits = new BehaviorSubject(["Mango", "Orange", "Banana"]);
+  fruits = ['Mango', 'Orange'];
+  foods = new BehaviorSubject(['Mango', 'Orange']);
 
   constructor() {}
 
@@ -20,8 +20,8 @@ export class AppComponent {
    */
 
   addFruit(item: string) {
-    // this.fruits.push(item); // for default case
+    this.fruits.push(item); // for default case
     // this.fruits = [...this.fruits, item];
-    this.fruits.next([item]);
+    this.foods.next([item]);
   }
 }

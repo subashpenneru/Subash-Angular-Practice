@@ -1,15 +1,26 @@
-<div class="container" style="margin-top: 30px;">
+<div class="container" style="margin-top: 30px">
   <div class="row">
     <div class="col-xs-12">
       <div class="form-group">
-        <input type="text" class="form-control" #newFruit placeholder="Enter a new Fruit">
+        <input
+          type="text"
+          class="form-control"
+          #newFruit
+          placeholder="Enter a new Fruit"
+        />
       </div>
       <div>
-        <button class="btn btn-success" (click)="addFruit(newFruit.value)">Add Fruit</button>
+        <button class="btn btn-success" (click)="addFruit(newFruit.value)">
+          Add Fruit
+        </button>
       </div>
-      <hr>
+      <hr />
     </div>
   </div>
 </div>
 
-<app-child [data]="fruits"></app-child>
+<app-child [data]="foods"></app-child>
+
+<hr />
+
+<app-fruit-list [fruitList]="fruits"></app-fruit-list>

@@ -3,6 +3,7 @@ import {
   AfterViewInit,
   Component,
   ContentChild,
+  ContentChildren,
   ElementRef,
   Input,
   OnInit,
@@ -18,7 +19,7 @@ import {
 export class ChildComponent implements OnInit, AfterViewInit, AfterContentInit {
   @Input() serverData: [];
   @ViewChildren('serverItem') serverItem: QueryList<ElementRef>;
-  @ContentChild('serverItemContent') serverItemContent;
+  @ContentChildren('serverItemContent') serverItemContent;
 
   constructor() {}
 
@@ -29,8 +30,8 @@ export class ChildComponent implements OnInit, AfterViewInit, AfterContentInit {
   }
 
   ngAfterViewInit() {
-    this.serverItem.forEach((ele) => {
-      console.log(ele.nativeElement.textContent);
-    });
+    // this.serverItem.forEach((ele) => {
+    //   console.log(ele.nativeElement.textContent);
+    // });
   }
 }

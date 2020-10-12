@@ -1,21 +1,26 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {AbstractControl, FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Observable} from 'rxjs';
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import {
+  AbstractControl,
+  FormArray,
+  FormControl,
+  FormGroup,
+  Validators,
+} from "@angular/forms";
+import { Observable } from "rxjs";
 
 @Component({
-  selector: 'app-reactive',
-  templateUrl: './reactive.component.html',
-  styleUrls: ['./reactive.component.css']
+  selector: "app-reactive",
+  templateUrl: "./reactive.component.html",
+  styleUrls: ["./reactive.component.css"],
 })
 export class ReactiveComponent implements OnInit {
-
   @Output() setUserName = new EventEmitter<string>();
-  genders = ['Male', 'Female'];
+  genders = ["Male", "Female"];
   userForm: FormGroup;
-  forbiddenNames = ['Subash', 'Sai'];
-  forbiddenEmails = ['subashpenneru@gmail.com'];
+  forbiddenNames = ["Subash", "Sai"];
+  forbiddenEmails = ["subashpenneru@gmail.com"];
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     this.initForm();
@@ -24,22 +29,29 @@ export class ReactiveComponent implements OnInit {
   private initForm() {
     this.userForm = new FormGroup({
       userData: new FormGroup({
-        firstName: new FormControl('', [
-          Validators.required, this.setNameValidator.bind(this)
+        firstName: new FormControl("", [
+          Validators.required,
+          this.setNameValidator.bind(this),
         ]),
-        lastName: new FormControl(null, Validators.required)
+        lastName: new FormControl(null, Validators.required),
       }),
-      email: new FormControl(null, [
-        Validators.required, Validators.email
-      ], [this.setEmailValidator.bind(this)]),
+      email: new FormControl(
+        null,
+        [Validators.required, Validators.email],
+        [this.setEmailValidator.bind(this)]
+      ),
       password: new FormControl(null, Validators.required),
+      confirmPwd: new FormControl(null, [
+        Validators.required,
+        this.setConfirmPwd.bind(this),
+      ]),
       gender: new FormControl(null, Validators.required),
-      hobbies: new FormArray([])
+      hobbies: new FormArray([]),
     });
   }
 
   getHobbiesControl(): FormArray {
-    return (this.userForm.get('hobbies') as FormArray);
+    return this.userForm.get("hobbies") as FormArray;
   }
 
   onAddHobby() {
@@ -50,7 +62,7 @@ export class ReactiveComponent implements OnInit {
     this.getHobbiesControl().removeAt(index);
   }
 
-  setNameValidator(control: FormControl): {[s: string]: boolean} {
+  setNameValidator(control: FormControl): { [s: string]: boolean } {
     if (control.value) {
       const index = this.forbiddenNames.findIndex(
         (name: string) => name.toLowerCase() === control.value.toLowerCase()
@@ -76,6 +88,22 @@ export class ReactiveComponent implements OnInit {
       }, 1000);
     });
     return promise;
+  }
+
+  setConfirmPwd(control: FormControl): { [s: string]: boolean } {
+    const pwd = this.userForm
+      ? this.userForm.get("password")
+        ? this.userForm.get("password").value
+        : null
+      : null;
+
+    if (typeof pwd === "string") {
+      if (!pwd.includes(control.value)) {
+        return { notMatchWithPassword: true };
+      }
+    }
+
+    return null;
   }
 
   onSubmit() {

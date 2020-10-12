@@ -2,67 +2,125 @@
   <div formGroupName="userData">
     <div class="form-group">
       <label for="firstName">Enter First Name</label>
-      <input id="firstName" class="form-control" formControlName="firstName">
-      <app-form-error [errorConfig]="{
-      valid: userForm.get('userData.firstName').valid,
-      touched: userForm.get('userData.firstName').touched,
-      error: userForm.get('userData.firstName').errors
-      }"
-        [inputName]="'First Name'"></app-form-error>
+      <input id="firstName" class="form-control" formControlName="firstName" />
+      <app-form-error
+        [errorConfig]="{
+          valid: userForm.get('userData.firstName').valid,
+          touched: userForm.get('userData.firstName').touched,
+          error: userForm.get('userData.firstName').errors
+        }"
+        [inputName]="'First Name'"
+      ></app-form-error>
     </div>
     <div class="form-group">
       <label for="lastName">Enter Last Name</label>
-      <input id="lastName" class="form-control" formControlName="lastName">
-      <app-form-error [errorConfig]="{
-      valid: userForm.get('userData.lastName').valid,
-      touched: userForm.get('userData.lastName').touched,
-      error: userForm.get('userData.lastName').errors
-      }" [inputName]="'Last Name'"></app-form-error>
+      <input id="lastName" class="form-control" formControlName="lastName" />
+      <app-form-error
+        [errorConfig]="{
+          valid: userForm.get('userData.lastName').valid,
+          touched: userForm.get('userData.lastName').touched,
+          error: userForm.get('userData.lastName').errors
+        }"
+        [inputName]="'Last Name'"
+      ></app-form-error>
     </div>
   </div>
   <div class="form-group">
     <label for="email">Enter email-Id</label>
-    <input type="email" id="email" class="form-control" formControlName="email">
-    <app-form-error [errorConfig]="{
-      valid: userForm.get('email').valid,
-      touched: userForm.get('email').touched,
-      error: userForm.get('email').errors
-      }" [inputName]="'Email'"></app-form-error>
+    <input
+      type="email"
+      id="email"
+      class="form-control"
+      formControlName="email"
+    />
+    <app-form-error
+      [errorConfig]="{
+        valid: userForm.get('email').valid,
+        touched: userForm.get('email').touched,
+        error: userForm.get('email').errors
+      }"
+      [inputName]="'Email'"
+    ></app-form-error>
   </div>
   <div class="form-group">
     <label for="password">Enter Password</label>
-    <input type="password" id="password" class="form-control" formControlName="password">
-    <app-form-error [errorConfig]="{
-      valid: userForm.get('password').valid,
-      touched: userForm.get('password').touched,
-      error: userForm.get('password').errors
-      }" [inputName]="'Password'"></app-form-error>
+    <input
+      type="password"
+      id="password"
+      class="form-control"
+      formControlName="password"
+    />
+    <app-form-error
+      [errorConfig]="{
+        valid: userForm.get('password').valid,
+        touched: userForm.get('password').touched,
+        error: userForm.get('password').errors
+      }"
+      [inputName]="'Password'"
+    ></app-form-error>
+  </div>
+  <div class="form-group">
+    <label for="confirmPwd">Confirm Password</label>
+    <input
+      type="password"
+      id="confirmPwd"
+      class="form-control"
+      formControlName="confirmPwd"
+    />
+    <app-form-error
+      [errorConfig]="{
+        valid: userForm.get('confirmPwd').valid,
+        touched: userForm.get('confirmPwd').touched,
+        error: userForm.get('confirmPwd').errors
+      }"
+      [inputName]="'Confirm Password'"
+    ></app-form-error>
   </div>
   <div class="radio-inline">
     <div class="form-group" *ngFor="let gender of genders">
       <label>
-        <input type="radio" id="{{gender}}" name="gender"
-               [value]="gender" formControlName="gender">
+        <input
+          type="radio"
+          id="{{ gender }}"
+          name="gender"
+          [value]="gender"
+          formControlName="gender"
+        />
         {{ gender }}
       </label>
     </div>
   </div>
-  <div formArrayName="hobbies" style="margin: 10px 0;">
+  <div formArrayName="hobbies" style="margin: 10px 0">
     <h4>Hobbies</h4>
-    <button class="btn btn-default" type="button" (click)="onAddHobby()">Add Hobby</button>
-    <div class="row" *ngFor="let hobby of getHobbiesControl().controls; let i = index" style="margin-top: 10px;">
+    <button class="btn btn-default" type="button" (click)="onAddHobby()">
+      Add Hobby
+    </button>
+    <div
+      class="row"
+      *ngFor="let hobby of getHobbiesControl().controls; let i = index"
+      style="margin-top: 10px"
+    >
       <div class="col-xs-10">
-        <input type="text" class="form-control" formControlName="{{i}}">
+        <input type="text" class="form-control" formControlName="{{ i }}" />
       </div>
       <div class="col-xs-2">
-        <button class="btn btn-danger" type="button" (click)="onDeleteHobby(i)">X</button>
+        <button class="btn btn-danger" type="button" (click)="onDeleteHobby(i)">
+          X
+        </button>
       </div>
     </div>
   </div>
   <div class="form-group">
-    <button class="btn btn-success" type="submit"
-            [disabled]="!userForm.valid">Save</button>
-    <button class="btn btn-danger" type="button" style="margin-left: 10px;"
-            (click)="onClear()">Clear</button>
+    <button class="btn btn-success" type="submit" [disabled]="!userForm.valid">
+      Save
+    </button>
+    <button
+      class="btn btn-danger"
+      type="button"
+      style="margin-left: 10px"
+      (click)="onClear()"
+    >
+      Clear
+    </button>
   </div>
 </form>

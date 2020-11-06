@@ -19,6 +19,7 @@ export class ReactiveComponent implements OnInit {
   userForm: FormGroup;
   forbiddenNames = ["Subash", "Sai"];
   forbiddenEmails = ["subashpenneru@gmail.com"];
+  custom = "Libor + ";
 
   constructor() {}
 
@@ -44,6 +45,10 @@ export class ReactiveComponent implements OnInit {
       confirmPwd: new FormControl(null, [
         Validators.required,
         this.setConfirmPwd.bind(this),
+      ]),
+      customVal: new FormControl(this.custom, [
+        Validators.required,
+        this.checkCustomValue.bind(this),
       ]),
       gender: new FormControl(null, Validators.required),
       hobbies: new FormArray([]),
@@ -101,6 +106,23 @@ export class ReactiveComponent implements OnInit {
       if (!pwd.includes(control.value)) {
         return { notMatchWithPassword: true };
       }
+    }
+
+    return null;
+  }
+
+  checkCustomValue(control: FormControl): { [s: string]: boolean } {
+    if (!control.value.startsWith(this.custom)) {
+      control.setValue(this.custom);
+    }
+    const value = +control.value.split(this.custom)[1];
+
+    if (typeof value !== "number" || isNaN(value)) {
+      return { onlyNumber: true };
+    }
+
+    if (this.custom === control.value) {
+      return { required: true };
     }
 
     return null;

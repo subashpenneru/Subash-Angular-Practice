@@ -76,6 +76,24 @@
       [inputName]="'Confirm Password'"
     ></app-form-error>
   </div>
+  <div class="form-group">
+    <label for="customVal">Enter Custom Value</label>
+    <input
+      type="text"
+      id="customVal"
+      class="form-control"
+      formControlName="customVal"
+      autocomplete="off"
+    />
+    <app-form-error
+      [errorConfig]="{
+        valid: userForm.get('customVal').valid,
+        touched: userForm.get('customVal').touched,
+        error: userForm.get('customVal').errors
+      }"
+      [inputName]="'Custom Input'"
+    ></app-form-error>
+  </div>
   <div class="radio-inline">
     <div class="form-group" *ngFor="let gender of genders">
       <label>

@@ -1,0 +1,7 @@
+<div *ngIf="type == 'default'">{{ text }}</div>
+
+<div class="custom" *ngIf="type == 'custom'">
+  <span><b>Name: </b> {{ text.name }}</span>
+  <span><b>Age: </b> {{ text.age }}</span>
+  <span><b>Email: </b> {{ text.email }}</span>
+</div>

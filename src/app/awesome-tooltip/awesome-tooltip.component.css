@@ -1,0 +1,18 @@
+:host {
+  display: block;
+}
+
+div {
+  background-color: #292929;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+.custom {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 250px;
+  justify-content: space-around;
+}

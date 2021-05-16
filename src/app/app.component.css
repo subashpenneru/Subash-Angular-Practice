@@ -1,35 +1,35 @@
 button {
-    padding: 16px 8px;
-    background-color: slateblue;
-    color: white;
-    border-radius: 10px;
-    cursor: pointer;
-    border: 1px solid blue;
-    outline: none;
-    margin: 0 10px;
+  padding: 16px 8px;
+  background-color: slateblue;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 1px solid blue;
+  outline: none;
+  margin: 0 10px;
 }
 
 li {
-    margin: 10px;
-    padding: 8px;
+  margin: 10px;
+  padding: 8px;
 }
 
 .odd {
-    color: red;
+  color: red;
 }
 
 .even {
-    color: orangered;
+  color: orangered;
 }
 
 .Even {
-    border: 1px solid green;
-    background-color: palegreen;
-    color: white;
+  border: 1px solid green;
+  background-color: palegreen;
+  color: white;
 }
 
 .Odd {
-    border: 1px solid red;
-    background-color: salmon;
-    color: white;
+  border: 1px solid red;
+  background-color: salmon;
+  color: white;
 }

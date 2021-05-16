@@ -1,17 +1,20 @@
 import { Directive, TemplateRef, ViewContainerRef, Input } from "@angular/core";
 
 @Directive({
-    selector: '[customIf]'
+  selector: "[customIf]",
 })
 export class CustomIfDirective {
+  constructor(
+    private te: TemplateRef<any>,
+    private viewRef: ViewContainerRef
+  ) {}
 
-    constructor(private te: TemplateRef<any>, private viewRef: ViewContainerRef) {}
-
-    @Input() set customIf(value: boolean) {
-        if(value) {
-            this.viewRef.createEmbeddedView(this.te);
-        } else {
-            this.viewRef.clear();
-        }
+  @Input() set customIf(value: boolean) {
+    console.log(value);
+    if (value) {
+      this.viewRef.createEmbeddedView(this.te);
+    } else {
+      this.viewRef.clear();
     }
+  }
 }

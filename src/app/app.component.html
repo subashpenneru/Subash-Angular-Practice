@@ -1,44 +1,56 @@
-<button (click)="onlyOdd = true">Odd Numbers</button>
-<button (click)="onlyOdd = false">Even Numbers</button>
+<button (click)="onlyOdd = !onlyOdd">
+  {{ onlyOdd ? "Odd" : "Even" }} Numbers
+</button>
 
 <ul>
-    <div *ngIf="onlyOdd else even">
-        <li *ngFor="let odd of oddNumbers; let i=index"
-            [ngClass]="{odd: odd % 2 !== 0}"
-            [ngStyle]="{backgroundColor: odd % 2 !== 0 ? 'yellow' : 'transparent'}"> 
-            {{ odd }} 
-        </li>
+  <div *ngIf="onlyOdd; else even">
+    <li
+      *ngFor="let odd of oddNumbers; let i = index"
+      [ngClass]="{ odd: odd % 2 !== 0 }"
+      [ngStyle]="{ backgroundColor: odd % 2 !== 0 ? 'yellow' : 'transparent' }"
+    >
+      {{ odd }}
+    </li>
+  </div>
+  <ng-template #even>
+    <div>
+      <li
+        *ngFor="let even of evenNumbers; let i = index"
+        [ngClass]="{ even: even % 2 === 0 }"
+        [ngStyle]="{
+          backgroundColor: even % 2 === 0 ? 'palegreen' : 'transparent'
+        }"
+      >
+        {{ even }}
+      </li>
     </div>
-    <ng-template #even>
-        <div>
-            <li *ngFor="let even of evenNumbers; let i=index" 
-                [ngClass]="{even: even % 2 === 0}"
-                [ngStyle]="{backgroundColor: even % 2 === 0 ? 'palegreen' : 'transparent'}">
-                {{ even }}
-            </li>
-        </div>
-    </ng-template>
-    <div *ngIf="!onlyOdd">
-        <li *ngFor="let even of evenNumbers; let i=index" >
-            {{ even }}
-        </li>
-    </div>
+  </ng-template>
+  <div *ngIf="!onlyOdd">
+    <li *ngFor="let even of evenNumbers; let i = index">
+      {{ even }}
+    </li>
+  </div>
 </ul>
 
-<ng-template *ngFor="let num of numbers;let i=index" [ngIf]="onlyOdd">
-    <p style="padding: 8px 16px; width: 75%; margin: 10px auto;"
-        [ngClass]="addNumbersClass(num)">{{num}}</p>
+<ng-template *ngFor="let num of numbers; let i = index" [ngIf]="onlyOdd">
+  <p
+    style="padding: 8px 16px; width: 75%; margin: 10px auto"
+    [ngClass]="addNumbersClass(num)"
+  >
+    {{ num }}
+  </p>
 </ng-template>
-
 
 <h1>SWITCH</h1>
 <div [ngSwitch]="value">
-    <p *ngSwitchCase="5">Value is 5</p>
-    <p *ngSwitchCase="10">Value is 10</p>
-    <p *ngSwitchDefault>Value is {{value}}</p>
+  <p *ngSwitchCase="5">Value is 5</p>
+  <p *ngSwitchCase="10">Value is 10</p>
+  <p *ngSwitchDefault>Value is {{ value }}</p>
 </div>
 
 <p appBasicHighlight>Styling from basic highlight directive.</p>
-<p appBetterHighlight defaultColor="yellow" [highlightColor]="'orangered'">Styling from better highlight directive.</p>
+<p appBetterHighlight defaultColor="yellow" [highlightColor]="'orangered'">
+  Styling from better highlight directive.
+</p>
 
-<div *customIf="onlyOdd"> This content is from custom "If" Directive </div>
+<div *customIf="onlyOdd">This content is from custom "If" Directive</div>

@@ -1,0 +1,51 @@
+<section class="paginate">
+  <div class="paginate__section">
+    <select class="form-control" (change)="onPageOptionSelect($event)">
+      <option
+        [value]="sOption"
+        *ngFor="let sOption of pageOptions"
+        [selected]="sOption === selectedPageOption"
+      >
+        {{ sOption }}
+      </option>
+    </select>
+    <p class="lead">
+      Page Number: <strong>{{ selectedPage }}</strong>
+    </p>
+  </div>
+  <div class="paginate__pagination">
+    <div
+      *ngFor="let f of pagination.first"
+      (click)="onSelect(f)"
+      [ngClass]="selectedClass(f)"
+    >
+      {{ f }}
+    </div>
+
+    <ng-container *ngIf="pagination.middle.length > 0">
+      <span>.</span>
+      <span>.</span>
+      <span>.</span>
+      <div
+        *ngFor="let m of pagination.middle"
+        (click)="onSelect(m)"
+        [ngClass]="selectedClass(m)"
+      >
+        {{ m }}
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="pagination.last.length > 0">
+      <span>.</span>
+      <span>.</span>
+      <span>.</span>
+      <div
+        *ngFor="let l of pagination.last"
+        (click)="onSelect(l)"
+        [ngClass]="selectedClass(l)"
+      >
+        {{ l }}
+      </div>
+    </ng-container>
+  </div>
+</section>

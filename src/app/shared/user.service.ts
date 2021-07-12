@@ -11,22 +11,22 @@ export class UserService {
     {
       name: "user1",
       id: this.generateId(),
-      age: Math.round(Math.random() * 50),
+      age: this.generateAge(),
     },
     {
       name: "user2",
       id: this.generateId(),
-      age: Math.round(Math.random() * 50),
+      age: this.generateAge(),
     },
     {
       name: "user3",
       id: this.generateId(),
-      age: Math.round(Math.random() * 50),
+      age: this.generateAge(),
     },
     {
       name: "user4",
       id: this.generateId(),
-      age: Math.round(Math.random() * 50),
+      age: this.generateAge(),
     },
   ];
 
@@ -38,6 +38,10 @@ export class UserService {
     }
 
     return id;
+  }
+
+  generateAge() {
+    return Math.round(Math.random() * 50);
   }
 
   getUsers() {

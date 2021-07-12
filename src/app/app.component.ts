@@ -10,10 +10,16 @@ import { UserService } from "./shared/user.service";
 export class AppComponent implements OnInit {
   usersData: User[];
   sliderValue = 10;
+  selectedPage = 1;
 
   constructor(private userServ: UserService) {}
 
   ngOnInit() {
     this.usersData = this.userServ.getUsers();
+  }
+
+  pageEvent({ perPage, page }) {
+    this.selectedPage = page;
+    console.log({ perPage, page });
   }
 }

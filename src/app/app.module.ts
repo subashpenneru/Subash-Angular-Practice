@@ -6,9 +6,10 @@ import { AppComponent } from "./app.component";
 import { UsersComponent } from "./users/users.component";
 import { UserComponent } from "./users/user/user.component";
 import { ChildComponent } from "./child/child.component";
+import { PaginateComponent } from './paginate/paginate.component';
 
 @NgModule({
-  declarations: [AppComponent, UsersComponent, UserComponent, ChildComponent],
+  declarations: [AppComponent, UsersComponent, UserComponent, ChildComponent, PaginateComponent],
   imports: [BrowserModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],

@@ -17,6 +17,8 @@ export class PaginateComponent implements OnInit {
   };
   selectedPageOption = this.pageOptions[0];
   totalPages = 1;
+  viewFrom = 0;
+  viewTo = 0;
 
   constructor() {}
 
@@ -62,6 +64,15 @@ export class PaginateComponent implements OnInit {
     }
 
     this.pagination = { first, middle, last };
+
+    if (this.totalItems > 0) {
+      this.viewFrom = (this.selectedPage - 1) * this.selectedPageOption + 1;
+      this.viewTo = this.selectedPageOption * this.selectedPage;
+
+      if (this.selectedPage === this.totalPages) {
+        this.viewTo = this.totalItems;
+      }
+    }
   }
 
   setTotalPages() {

@@ -45,7 +45,6 @@ export class UserService {
   }
 
   getUsers() {
-    console.log(this.usersData);
     return this.usersData;
   }
 

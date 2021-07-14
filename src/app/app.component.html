@@ -10,11 +10,6 @@
     <app-child [(ngModel)]="sliderValue"></app-child>
   </div>
   <div class="row">
-    <app-paginate
-      [totalItems]="100"
-      [selectedPage]="selectedPage"
-      (setPaginate)="pageEvent($event)"
-      [pageOptions]="[10, 20, 30]"
-    ></app-paginate>
+    <app-table-users></app-table-users>
   </div>
 </div>

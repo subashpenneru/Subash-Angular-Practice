@@ -1,41 +1,26 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnInit,
-  Output,
-  SimpleChanges,
-} from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 
 @Component({
   selector: "app-paginate",
   templateUrl: "./paginate.component.html",
   styleUrls: ["./paginate.component.css"],
 })
-export class PaginateComponent implements OnInit, OnChanges {
+export class PaginateComponent implements OnInit {
   @Input() totalItems = 1;
   @Input() selectedPage = 1;
   @Output() setPaginate = new EventEmitter<{ perPage: number; page: number }>();
   @Input() pageOptions = [10, 20, 30];
+  @Input() selectedPageOption;
   pagination = {
     first: [],
     middle: [],
     last: [],
   };
-  selectedPageOption = this.pageOptions[0];
   totalPages = 1;
   viewFrom = 0;
   viewTo = 0;
 
   constructor() {}
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes.totalItems && !changes.totalItems.firstChange) {
-      this.setTotalPages();
-      this.setPagination(this.selectedPage);
-    }
-  }
 
   ngOnInit(): void {
     this.setTotalPages();

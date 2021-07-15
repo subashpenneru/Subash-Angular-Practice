@@ -7,7 +7,10 @@ import { HttpClient } from "@angular/common/http";
 export class TableUsersService {
   constructor(private http: HttpClient) {}
 
-  getUsers() {
-    return this.http.get(`https://jsonplaceholder.typicode.com/todos`);
+  getUsers(page = 0, size = 10) {
+    // return this.http.get(`https://jsonplaceholder.typicode.com/todos`);
+    return this.http.get(
+      `https://api.instantwebtools.net/v1/passenger?page=${page}&size=${size}`
+    );
   }
 }

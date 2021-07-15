@@ -11,15 +11,15 @@ export class TableUsersComponent implements OnInit {
   public selectedPage = 1;
   public selectedPerPage = 10;
   public data = [];
-  public todos = [];
+  public todoData = [];
 
-  constructor(private tableUserServ: TableUsersService) {}
+  constructor(private tableUserService: TableUsersService) {}
 
   ngOnInit(): void {
-    this.tableUserServ.getUsers().subscribe(
+    this.tableUserService.getUsers().subscribe(
       (res: any) => {
         this.data = JSON.parse(JSON.stringify(res));
-        this.todos = this.data.slice(0, 10);
+        this.todoData = this.data.slice(0, 10);
         this.loading = false;
       },
       (err) => {
@@ -32,14 +32,12 @@ export class TableUsersComponent implements OnInit {
   pageEvent({ perPage, page }) {
     this.selectedPage = page;
     this.selectedPerPage = perPage;
-    this.todos = this.data.slice((page - 1) * perPage, page * perPage);
+    this.todoData = this.data.slice((page - 1) * perPage, page * perPage);
   }
 
   onDelete(id) {
-    const _data = JSON.parse(JSON.stringify(this.data));
-
-    this.data = _data.filter((ele) => ele.id !== id);
-    this.todos = this.data.slice(
+    this.data = this.data.filter((ele) => ele.id !== id);
+    this.todoData = this.data.slice(
       (this.selectedPage - 1) * this.selectedPerPage,
       this.selectedPage * this.selectedPerPage
     );

@@ -45,12 +45,17 @@
   border-radius: 50%;
 }
 
-.paginate .paginate__pagination > div:hover {
+.paginate .paginate__pagination > div:not(.disabled):hover {
   transform: scale(1.1);
 }
 
 .paginate .paginate__pagination > div.selected {
   background-color: #ff4400;
+}
+
+.paginate .paginate__pagination > div.disabled {
+  opacity: 0.7;
+  cursor: auto;
 }
 
 .paginate .paginate__pagination > span {

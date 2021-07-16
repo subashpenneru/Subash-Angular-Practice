@@ -13,6 +13,13 @@
   </div>
   <div class="paginate__pagination">
     <div
+      [ngClass]="{ disabled: selectedPage === 1 }"
+      (click)="onNextPrevIcon(selectedPage - 1)"
+      style="margin-right: 12px"
+    >
+      <i class="fas fa-chevron-left"></i>
+    </div>
+    <div
       *ngFor="let f of pagination.first"
       (click)="onSelect(f)"
       [ngClass]="selectedClass(f)"
@@ -45,5 +52,12 @@
         {{ l }}
       </div>
     </ng-container>
+    <div
+      [ngClass]="{ disabled: selectedPage === totalPages }"
+      (click)="onNextPrevIcon(selectedPage + 1)"
+      style="margin-left: 12px"
+    >
+      <i class="fas fa-chevron-right"></i>
+    </div>
   </div>
 </section>

@@ -88,6 +88,10 @@ export class PaginateComponent implements OnInit {
     this.pageEmit(page);
   }
 
+  onNextPrevIcon(page: number) {
+    this.pageEmit(page);
+  }
+
   onPageOptionSelect(event) {
     const option = +event.target.value;
 

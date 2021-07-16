@@ -1,6 +1,5 @@
 <section class="table">
-  <h3 *ngIf="loading">Loading...</h3>
-  <div class="table__paginate" *ngIf="!loading">
+  <div class="table__paginate">
     <table class="table table-striped">
       <thead>
         <tr>
@@ -13,7 +12,7 @@
           <th></th>
         </tr>
       </thead>
-      <tbody>
+      <tbody *ngIf="!loading">
         <tr *ngFor="let todo of todoData; let i = index">
           <td>{{ getIndex(i) }}</td>
           <td>{{ todo.passName }}</td>
@@ -21,19 +20,11 @@
           <td>{{ todo.airlineName }}</td>
           <td>{{ todo.airlineCtry }}</td>
           <td>{{ todo.established }}</td>
-          <!-- <td>
-            <button
-              type="button"
-              class="btn btn-danger btn-sm"
-              (click)="onDelete(todo.id)"
-            >
-              <i class="fas fa-trash"></i>
-            </button>
-          </td> -->
         </tr>
       </tbody>
     </table>
     <app-paginate
+      *ngIf="!loading"
       [totalItems]="totalPages"
       [selectedPage]="selectedPage"
       [selectedPageOption]="selectedPerPage"

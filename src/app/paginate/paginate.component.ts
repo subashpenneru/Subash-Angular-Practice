@@ -1,9 +1,9 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: "app-paginate",
-  templateUrl: "./paginate.component.html",
-  styleUrls: ["./paginate.component.css"],
+  selector: 'app-paginate',
+  templateUrl: './paginate.component.html',
+  styleUrls: ['./paginate.component.css'],
 })
 export class PaginateComponent implements OnInit {
   @Input() totalItems = 1;
@@ -28,9 +28,9 @@ export class PaginateComponent implements OnInit {
   }
 
   setPagination(val = this.selectedPage) {
-    let first = [],
-      middle = [],
-      last = [];
+    let first = [];
+    let middle = [];
+    let last = [];
 
     if (this.totalPages <= 4) {
       first = [...Array(this.totalPages)].map((k, i) => i + 1);
@@ -38,9 +38,13 @@ export class PaginateComponent implements OnInit {
       first = [1, 2, 3];
       last = [this.totalPages - 2, this.totalPages - 1, this.totalPages];
 
-      if (first.find((e) => e === val)) last = [this.totalPages];
+      if (first.find((e) => e === val)) {
+        last = [this.totalPages];
+      }
 
-      if (last.find((e) => e === val)) first = [1];
+      if (last.find((e) => e === val)) {
+        first = [1];
+      }
 
       if (first[first.length - 1] === val) {
         first.push(val + 1);

@@ -1,10 +1,10 @@
-import { Component, OnInit } from "@angular/core";
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-  selector: "app-child",
-  templateUrl: "./child.component.html",
-  styleUrls: ["./child.component.css"],
+  selector: 'app-child',
+  templateUrl: './child.component.html',
+  styleUrls: ['./child.component.css'],
   providers: [
     { provide: NG_VALUE_ACCESSOR, useExisting: ChildComponent, multi: true },
   ],

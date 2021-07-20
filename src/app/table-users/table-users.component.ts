@@ -1,10 +1,10 @@
-import { Component, OnInit } from "@angular/core";
-import { TableUsersService } from "./table-users.service";
+import { Component, OnInit } from '@angular/core';
+import { TableUsersService } from './table-users.service';
 
 @Component({
-  selector: "app-table-users",
-  templateUrl: "./table-users.component.html",
-  styleUrls: ["./table-users.component.css"],
+  selector: 'app-table-users',
+  templateUrl: './table-users.component.html',
+  styleUrls: ['./table-users.component.css'],
 })
 export class TableUsersComponent implements OnInit {
   public loading = true;
@@ -42,16 +42,16 @@ export class TableUsersComponent implements OnInit {
     return data.map((ele) => ({
       passName: ele.name,
       passTrips: ele.trips,
-      airlineName: this.getAirlineInfo(ele.airline, "name"),
-      airlineCtry: this.getAirlineInfo(ele.airline, "country"),
-      established: this.getAirlineInfo(ele.airline, "established"),
+      airlineName: this.getAirlineInfo(ele.airline, 'name'),
+      airlineCtry: this.getAirlineInfo(ele.airline, 'country'),
+      established: this.getAirlineInfo(ele.airline, 'established'),
       id: ele._id,
       _id: ele._id,
     }));
   }
 
   getAirlineInfo(data, key: string) {
-    return data ? (data[0] ? data[0][key] : data[key]) : "";
+    return data ? (data[0] ? data[0][key] : data[key]) : '';
   }
 
   pageEvent({ perPage, page }) {

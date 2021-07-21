@@ -1,25 +1,19 @@
-import { Component, EventEmitter, OnInit, Output } from "@angular/core";
-import {
-  AbstractControl,
-  FormArray,
-  FormControl,
-  FormGroup,
-  Validators,
-} from "@angular/forms";
-import { Observable } from "rxjs";
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
-  selector: "app-reactive",
-  templateUrl: "./reactive.component.html",
-  styleUrls: ["./reactive.component.css"],
+  selector: 'app-reactive',
+  templateUrl: './reactive.component.html',
+  styleUrls: ['./reactive.component.css'],
 })
 export class ReactiveComponent implements OnInit {
   @Output() setUserName = new EventEmitter<string>();
-  genders = ["Male", "Female"];
+  genders = ['Male', 'Female'];
   userForm: FormGroup;
-  forbiddenNames = ["Subash", "Sai"];
-  forbiddenEmails = ["subashpenneru@gmail.com"];
-  custom = "Libor + ";
+  forbiddenNames = ['Subash', 'Sai'];
+  forbiddenEmails = ['subashpenneru@gmail.com'];
+  custom = 'Libor + ';
 
   constructor() {}
 
@@ -30,7 +24,7 @@ export class ReactiveComponent implements OnInit {
   private initForm() {
     this.userForm = new FormGroup({
       userData: new FormGroup({
-        firstName: new FormControl("", [
+        firstName: new FormControl('', [
           Validators.required,
           this.setNameValidator.bind(this),
         ]),
@@ -56,7 +50,7 @@ export class ReactiveComponent implements OnInit {
   }
 
   getHobbiesControl(): FormArray {
-    return this.userForm.get("hobbies") as FormArray;
+    return this.userForm.get('hobbies') as FormArray;
   }
 
   onAddHobby() {
@@ -97,12 +91,12 @@ export class ReactiveComponent implements OnInit {
 
   setConfirmPwd(control: FormControl): { [s: string]: boolean } {
     const pwd = this.userForm
-      ? this.userForm.get("password")
-        ? this.userForm.get("password").value
+      ? this.userForm.get('password')
+        ? this.userForm.get('password').value
         : null
       : null;
 
-    if (typeof pwd === "string") {
+    if (typeof pwd === 'string') {
       if (!pwd.includes(control.value)) {
         return { notMatchWithPassword: true };
       }
@@ -117,7 +111,7 @@ export class ReactiveComponent implements OnInit {
     }
     const value = +control.value.split(this.custom)[1];
 
-    if (typeof value !== "number" || isNaN(value)) {
+    if (typeof value !== 'number' || isNaN(value)) {
       return { onlyNumber: true };
     }
 

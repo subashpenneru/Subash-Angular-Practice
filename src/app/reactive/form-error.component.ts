@@ -1,11 +1,12 @@
-import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-form-error',
-  template: `<span class="help-block" style="color: red;">{{errorMessage}}</span>`
+  template: `<span class="help-block" style="color: red;">{{
+    errorMessage
+  }}</span>`,
 })
 export class FormErrorComponent implements OnChanges {
-
   @Input() inputName: string;
   @Input() errorConfig: any;
   errorMessage: string;

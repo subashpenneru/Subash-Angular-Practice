@@ -1,11 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  NgForm,
-  Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -14,11 +8,12 @@ import {
 })
 export class AppComponent implements OnInit {
   reactiveForm: FormGroup;
+  isTemplate = true;
 
-  constructor(private _f: FormBuilder) {}
+  constructor() {}
 
   ngOnInit() {
-    this.reactiveForm = this._f.group({
+    this.reactiveForm = new FormGroup({
       firstName: new FormControl(null, Validators.required),
       lastName: new FormControl(null, Validators.required),
       email: new FormControl(null, [Validators.required, Validators.email]),

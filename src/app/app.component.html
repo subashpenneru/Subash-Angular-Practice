@@ -1,5 +1,9 @@
 <div class="app">
-  <!-- <section class="app-form">
+  <div class="app-btns">
+    <button (click)="isTemplate = true">Template Driven</button>
+    <button (click)="isTemplate = false">Reactive</button>
+  </div>
+  <section class="app-form" *ngIf="isTemplate">
     <h2 class="text-center title">Template Driven Form</h2>
     <form (ngSubmit)="onSubmit(f)" #f="ngForm">
       <app-custom-input
@@ -34,27 +38,34 @@
       ></app-custom-input>
       <button type="submit" [disabled]="!f.valid">Submit</button>
     </form>
-  </section> -->
+  </section>
 
-  <section class="app-form">
+  <section class="app-form" *ngIf="!isTemplate">
     <h2 class="text-center title">Reactive Form</h2>
-    <form>
+    <form [formGroup]="reactiveForm" (ngSubmit)="onReactiveFormSubmit()">
       <app-custom-input
         label="First Name"
         inputId="firstName"
+        formControlName="firstName"
       ></app-custom-input>
-      <app-custom-input label="Last Name" inputId="lastName"></app-custom-input>
+      <app-custom-input
+        label="Last Name"
+        inputId="lastName"
+        formControlName="lastName"
+      ></app-custom-input>
       <app-custom-input
         label="Email-Id"
         inputId="email"
         inputType="email"
+        formControlName="email"
       ></app-custom-input>
       <app-custom-input
         label="Password"
         inputId="password"
         inputType="password"
+        formControlName="password"
       ></app-custom-input>
+      <button type="submit" [disabled]="!reactiveForm.valid">Submit</button>
     </form>
-    <button type="submit">Submit</button>
   </section>
 </div>

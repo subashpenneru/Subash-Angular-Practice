@@ -9,7 +9,7 @@
 
   <hr />
 
-  <!-- <div>
+  <div>
     <p *ngIf="value; else valueFalse" class="alert alert-success">
       If value {{ value }} this will print
     </p>
@@ -17,15 +17,15 @@
 
   <ng-template #valueFalse>
     <p class="alert alert-danger">If value {{ value }} this will print</p>
-  </ng-template> -->
+  </ng-template>
 
-  <!-- <ng-template [ngIf]="value" *ngFor="let val of [1, 2, 3, 4]">
+  <ng-template [ngIf]="value" *ngFor="let val of [1, 2, 3, 4]">
     <li class="list-group-item">
       {{ val }}
     </li>
-  </ng-template> -->
+  </ng-template>
 
-  <!-- <ng-container *ngIf="value">
+  <ng-container *ngIf="value">
     <div>div tag</div>
     <p>p tag</p>
     <select class="form-control" name="age" id="age">
@@ -35,7 +35,7 @@
       <option value="18">18</option>
       <option value="19">19</option>
     </select>
-  </ng-container> -->
+  </ng-container>
 
   <app-child>
     <p>This is Child component from App Component</p>

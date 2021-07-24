@@ -3,18 +3,17 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>TRIPS</th>
-          <th>AIRLINE NAME</th>
-          <th>AIRLINE COUNTRY</th>
-          <th>ESTABLISHED</th>
-          <th></th>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">TRIPS</th>
+          <th scope="col">AIRLINE NAME</th>
+          <th scope="col">AIRLINE COUNTRY</th>
+          <th scope="col">ESTABLISHED</th>
         </tr>
       </thead>
       <tbody *ngIf="!loading">
         <tr *ngFor="let todo of todoData; let i = index">
-          <td>{{ getIndex(i) }}</td>
+          <th scope="row">{{ getIndex(i) }}</th>
           <td>{{ todo.passName }}</td>
           <td>{{ todo.passTrips }}</td>
           <td>{{ todo.airlineName }}</td>

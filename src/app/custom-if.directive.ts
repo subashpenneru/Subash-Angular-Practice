@@ -1,7 +1,7 @@
-import { Directive, TemplateRef, ViewContainerRef, Input } from "@angular/core";
+import { Directive, TemplateRef, ViewContainerRef, Input } from '@angular/core';
 
 @Directive({
-  selector: "[customIf]",
+  selector: '[customIf]',
 })
 export class CustomIfDirective {
   constructor(

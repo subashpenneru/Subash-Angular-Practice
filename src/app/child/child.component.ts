@@ -19,19 +19,23 @@ import {
 export class ChildComponent implements OnInit, AfterViewInit, AfterContentInit {
   @Input() serverData: [];
   @ViewChildren('serverItem') serverItem: QueryList<ElementRef>;
-  @ContentChildren('serverItemContent') serverItemContent;
+  @ContentChildren('serverItemContent')
+  serverItemContent: QueryList<ElementRef>;
 
   constructor() {}
 
   ngOnInit(): void {}
 
   ngAfterContentInit() {
-    console.log('aftercontent', this.serverItemContent);
+    console.log('AfterContentInit');
+    this.serverItemContent.forEach((ele) => {
+      console.log(ele.nativeElement.textContent);
+    });
   }
 
   ngAfterViewInit() {
-    // this.serverItem.forEach((ele) => {
-    //   console.log(ele.nativeElement.textContent);
-    // });
+    this.serverItem.forEach((ele) => {
+      console.log(ele.nativeElement.textContent);
+    });
   }
 }

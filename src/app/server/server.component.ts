@@ -28,7 +28,8 @@ export class ServerComponent
     AfterContentChecked,
     AfterViewInit,
     AfterViewChecked,
-    OnDestroy {
+    OnDestroy
+{
   @Input('server') server: { name: string; status: string };
   @ViewChild('serverPara') serverPara: ElementRef;
   @ContentChild('serverContent') serverContent: ElementRef;

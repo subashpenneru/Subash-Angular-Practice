@@ -1,14 +1,21 @@
 <div class="container">
   <input type="text" placeholder="Filter Status" [(ngModel)]="filteredStatus" />
-  <br>
+  <br />
   <button (click)="onAddServer()">Add Server</button>
-  <div class="servers" 
+  <div
+    class="servers"
     [ngClass]="getServerClass(server.status)"
-    *ngFor="let server of servers | serverFilter:filteredStatus:'status';let i=index">
-    <span>{{server.name | uppercase}} | {{server.date | date:'fullDate'}}</span>
-    <span class="status">{{server.status}}</span>
+    *ngFor="
+      let server of servers | serverFilter: filteredStatus:'status';
+      let i = index
+    "
+  >
+    <span>
+      {{ server.name | uppercase }} | {{ server.date | date: 'fullDate' }}
+    </span>
+    <span class="status">{{ server.status }}</span>
   </div>
 </div>
 
-<hr>
-<p *ngFor="let n of asyncData | async">{{n}}</p>
+<hr />
+<p *ngFor="let n of asyncData | async">{{ n }}</p>

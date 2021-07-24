@@ -6,15 +6,9 @@ import { AppComponent } from './app.component';
 import { ServerFilterPipe } from './server-filter.pipe';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ServerFilterPipe
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule
-  ],
+  declarations: [AppComponent, ServerFilterPipe],
+  imports: [BrowserModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

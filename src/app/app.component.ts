@@ -4,17 +4,11 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-
   asyncData: any;
   filteredStatus = '';
-
-  constructor() {
-    this.asyncData = new Observable(this.asyncSubscriber);
-  }
-
   servers = [
     { name: 'server1', date: new Date('2020-01-01'), status: 'online' },
     { name: 'server2', date: new Date('2020-01-02'), status: 'online' },
@@ -22,10 +16,14 @@ export class AppComponent {
     { name: 'server4', date: new Date('2020-01-04'), status: 'online' },
   ];
 
+  constructor() {
+    this.asyncData = new Observable(this.asyncSubscriber);
+  }
+
   getServerClass(status) {
     return {
       Online: status === 'online',
-      Offline: status === 'offline'
+      Offline: status === 'offline',
     };
   }
 
@@ -34,13 +32,13 @@ export class AppComponent {
     const newServer = {
       name: `server${length + 1}`,
       date: new Date(),
-      status: this.servers[length - 1].status === 'offline' ? 'online' : 'offline'
+      status:
+        this.servers[length - 1].status === 'offline' ? 'online' : 'offline',
     };
     this.servers.push(newServer);
   }
 
   asyncSubscriber = (observer) => {
     setTimeout(() => observer.next([1, 2, 3, 4, 5, 6]), 5000);
-  }
-
+  };
 }

@@ -27,7 +27,12 @@ export class PaginateComponent implements OnInit {
     this.setPagination(this.selectedPage);
   }
 
-  setPagination(val = this.selectedPage) {
+  /**
+   * This method is used to set the pagination values
+   * @param val typeOf number
+   * @author Subash
+   */
+  setPagination(val = this.selectedPage): void {
     let first = [];
     let middle = [];
     let last = [];
@@ -78,25 +83,33 @@ export class PaginateComponent implements OnInit {
     }
   }
 
-  setTotalPages() {
+  /**
+   * This method set the total No.of pages based on total records and selected page option from dropdown
+   */
+  setTotalPages(): void {
     this.totalPages = Math.ceil(this.totalItems / this.selectedPageOption);
   }
 
-  selectedClass(page) {
+  /**
+   *
+   * @param page typeOf number
+   * @returns selected true/false
+   */
+  selectedClass(page): { selected: boolean } {
     return {
       selected: this.selectedPage === page,
     };
   }
 
-  onSelect(page: number) {
+  onSelect(page: number): void {
     this.pageEmit(page);
   }
 
-  onNextPrevIcon(page: number) {
+  onNextPrevIcon(page: number): void {
     this.pageEmit(page);
   }
 
-  onPageOptionSelect(event) {
+  onPageOptionSelect(event): void {
     const option = +event.target.value;
 
     this.selectedPageOption = option;
@@ -104,7 +117,7 @@ export class PaginateComponent implements OnInit {
     this.pageEmit();
   }
 
-  pageEmit(page = 1) {
+  pageEmit(page = 1): void {
     this.selectedPage = page;
     this.setPagination(page);
     this.setPaginate.emit({

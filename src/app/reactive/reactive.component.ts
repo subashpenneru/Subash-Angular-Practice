@@ -106,7 +106,7 @@ export class ReactiveComponent implements OnInit {
   }
 
   checkCustomValue(control: FormControl): { [s: string]: boolean } {
-    if (!control.value.startsWith(this.custom)) {
+    if (!control.value || !control.value.startsWith(this.custom)) {
       control.setValue(this.custom);
     }
     const value = +control.value.split(this.custom)[1];
@@ -124,8 +124,10 @@ export class ReactiveComponent implements OnInit {
 
   onSubmit() {
     console.log(this.userForm);
-    const value = this.userForm.value;
-    const name = `${value.userData.firstName} ${value.userData.lastName}`;
+    const {
+      userData: { firstName, lastName },
+    } = this.userForm.value;
+    const name = `${firstName} ${lastName}`;
     this.setUserName.emit(name);
     this.onClear();
   }

@@ -1,0 +1,20 @@
+{
+  "HEADER": {
+    "TITLE": "Traduction",
+    "ACC-BTN": "Se connecter/Créer un compte"
+  },
+  "HOME": {
+    "SECTIONA": {
+      "TITLE": "TRADUCTION ANGULAIRE",
+      "READMORE": "Lire la suite"
+    },
+    "SECTIONB": {
+      "TITLE": "En savoir plus sur TRADUCTION ANGULAIRE",
+      "LEARNMORE": "Apprendre encore plus"
+    }
+  },
+  "FOOTER": {
+    "TITLE": "Développé par {{value}}",
+    "YEAR": "2021"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "HEADER": {
+    "TITLE": "Translation",
+    "ACC-BTN": "Sign in/Create Account"
+  },
+  "HOME": {
+    "SECTIONA": {
+      "TITLE": "ANGULAR TRANSLATION",
+      "READMORE": "Read More"
+    },
+    "SECTIONB": {
+      "TITLE": "Learn more about ANGULAR TRANSLATION",
+      "LEARNMORE": "Learn More"
+    }
+  },
+  "FOOTER": {
+    "TITLE": "Developed by {{value}}",
+    "YEAR": "2021"
+  }
+}

@@ -1,0 +1,16 @@
+<footer class="container">
+  <p class="lead">
+    &copy; {{ 'FOOTER.TITLE' | translate: { value: 'Subash Penneru' } }}
+    {{ 'FOOTER.YEAR' | translate }}
+  </p>
+  <select
+    name="lang"
+    id="lang"
+    class="form-control"
+    [(ngModel)]="langValue"
+    (change)="onChangeLang($event)"
+  >
+    <option value="en">English</option>
+    <option value="fr">French</option>
+  </select>
+</footer>

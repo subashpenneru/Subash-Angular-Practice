@@ -1,0 +1,11 @@
+header {
+  background-color: var(--bg--primary);
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+header > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}

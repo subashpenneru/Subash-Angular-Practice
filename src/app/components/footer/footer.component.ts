@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit } from '@angular/core';
 
-import { TranslationService } from 'src/app/services/translation.service'
+import { TranslationService } from 'src/app/services/translation.service';
 
 @Component({
   selector: 'app-footer',
@@ -8,15 +8,15 @@ import { TranslationService } from 'src/app/services/translation.service'
   styleUrls: ['./footer.component.css'],
 })
 export class FooterComponent implements OnInit {
-  langValue = 'en'
+  langValue = 'en';
 
   constructor(private translation: TranslationService) {}
 
   ngOnInit(): void {}
 
   onChangeLang(event) {
-    const lang = event.target.value
+    const lang = event.target.value;
 
-    this.translation.setLang(lang)
+    this.translation.setLang(lang);
   }
 }

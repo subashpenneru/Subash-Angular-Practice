@@ -14,7 +14,7 @@ export class TranslationService {
   constructor(private translate: TranslateService) {}
 
   /**
-   * This method is used to set the default language in `@ngx-translate/core` library
+   * This method is used to set the default language
    * @param lang values have to be `'en', 'fr', 'de' ...`
    */
   setDefaultLang(lang: string) {

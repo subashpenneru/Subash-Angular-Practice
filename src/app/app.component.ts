@@ -19,22 +19,35 @@ export class AppComponent {
   }
 
   onAddUser() {
-    this.appSub.userSub.next({ name: "Server1", age: this.getAge() });
-    this.appSub.userSub.next({ name: "Server2", age: this.getAge() });
-    this.appSub.userSub.next({ name: "Server3", age: this.getAge() });
+    const obj1 = {
+      name: "Server1",
+      age: this.getAge(),
+    };
+    const obj2 = {
+      name: "Server2",
+      age: this.getAge(),
+    };
+    const obj3 = {
+      name: "Server3",
+      age: this.getAge(),
+    };
 
-    this.appSub.userBehSub.next({ name: "Server1", age: this.getAge() });
-    this.appSub.userBehSub.next({ name: "Server2", age: this.getAge() });
-    this.appSub.userBehSub.next({ name: "Server3", age: this.getAge() });
+    this.appSub.userSub.next(obj1);
+    this.appSub.userSub.next(obj2);
+    this.appSub.userSub.next(obj3);
 
-    this.appSub.userReplaySub.next({ name: "Server1", age: this.getAge() });
-    this.appSub.userReplaySub.next({ name: "Server2", age: this.getAge() });
-    this.appSub.userReplaySub.next({ name: "Server3", age: this.getAge() });
+    this.appSub.userBehSub.next(obj1);
+    this.appSub.userBehSub.next(obj2);
+    this.appSub.userBehSub.next(obj3);
 
-    this.appSub.userAsyncSub.next({ name: "Server1", age: this.getAge() });
-    this.appSub.userAsyncSub.next({ name: "Server2", age: this.getAge() });
-    this.appSub.userAsyncSub.next({ name: "Server3", age: this.getAge() });
-    this.appSub.userAsyncSub.complete();
+    this.appSub.userReplaySub.next(obj1);
+    this.appSub.userReplaySub.next(obj2);
+    this.appSub.userReplaySub.next(obj3);
+
+    this.appSub.userAsyncSub.next(obj1);
+    this.appSub.userAsyncSub.next(obj2);
+    this.appSub.userAsyncSub.next(obj3);
+    this.appSub.userAsyncSub.complete(); // comment this line to see Async Subject working effect
 
     this.appSub.userSub.subscribe((res) =>
       console.log("[APP func Subject]", res)

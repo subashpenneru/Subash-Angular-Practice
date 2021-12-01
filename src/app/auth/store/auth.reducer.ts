@@ -1,5 +1,7 @@
-import {User} from '../../shared/user.model';
-import * as AuthActions from './auth.actions';
+import { createReducer, on } from "@ngrx/store";
+
+import { User } from "../../shared/user.model";
+import * as AuthActions from "./auth.actions";
 
 export interface State {
   user: User;
@@ -8,28 +10,23 @@ export interface State {
 
 export const initialState: State = {
   user: null,
-  isLoading: false
+  isLoading: false,
 };
 
-export function authReducer(state: State = initialState, action: AuthActions.AuthActions) {
-  switch (action.type) {
-    case AuthActions.LOGIN_START:
-      return {
-        ...state,
-        isLoading: true
-      };
-    case AuthActions.LOGIN:
-      return {
-        ...state,
-        isLoading: false,
-        user: { ...action.payload }
-      };
-    case AuthActions.LOGOUT:
-      return {
-        ...state,
-        user: null
-      };
-    default:
-      return {...state};
-  }
-}
+export const authReducer = createReducer(
+  initialState,
+  on(AuthActions.LOGIN_START, (state) => {
+    return {
+      ...state,
+      isLoading: true,
+    };
+  }),
+  on(AuthActions.LOGIN, (state: State, payload) => {
+    return {
+      ...state,
+      isLoading: false,
+      user: { ...payload.user },
+    };
+  }),
+  on(AuthActions.LOGOUT, (state: State) => ({ ...state, user: null }))
+);

@@ -1,39 +1,13 @@
-import {Action} from '@ngrx/store';
-import {User} from '../../shared/user.model';
+import { createAction, props } from "@ngrx/store";
 
-export const LOGIN_START = '[AUTH] LOGIN_START';
-export const LOGIN = '[AUTH] LOGIN';
-export const AUTO_LOGIN = '[AUTH] AUTO_LOGIN';
-export const LOGOUT_START = '[AUTH] LOGOUT_START';
-export  const LOGOUT = '[AUTH] LOGOUT';
-export const DUMMY = 'DUMMY';
+import { User } from "../../shared/user.model";
 
-export class LoginStart implements Action {
-  readonly type = LOGIN_START;
-  constructor(public payload: string) {
-  }
-}
-
-export class Login implements Action {
-  readonly type = LOGIN;
-  constructor(public payload: User) {
-  }
-}
-
-export class LogoutStart implements Action {
-  readonly type = LOGOUT_START;
-}
-
-export class Logout implements Action {
-  readonly type = LOGOUT;
-}
-
-export class AutoLogin implements Action {
-  readonly type = AUTO_LOGIN;
-}
-
-export class Dummy implements Action {
-  readonly type = DUMMY;
-}
-
-export type AuthActions = LoginStart | Login | Logout | LogoutStart | AutoLogin | Dummy;
+export const LOGIN_START = createAction(
+  "[AUTH] LOGIN_START",
+  props<{ payload: string }>()
+);
+export const LOGIN = createAction("[AUTH] LOGIN", props<{ user: User }>());
+export const LOGOUT_START = createAction("[AUTH] LOGOUT_START");
+export const LOGOUT = createAction("[AUTH] LOGOUT");
+export const AUTO_LOGIN = createAction("[AUTH] AUTO_LOGIN");
+export const DUMMY = createAction("DUMMY");

@@ -1,21 +1,26 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-6 col-xs-offset-3" style="text-align: center;">
+    <div class="col-xs-6 col-xs-offset-3" style="text-align: center">
       <h1>Counter: {{ (counterValue | async).counter }}</h1>
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-6 col-xs-offset-3" style="text-align: center; margin-top: 20px;">
+    <div
+      class="col-xs-6 col-xs-offset-3"
+      style="text-align: center; margin-top: 20px"
+    >
       <app-counter-actions></app-counter-actions>
     </div>
   </div>
-  <div class="row" style="margin-top: 30px;">
+  <div class="row" style="margin-top: 30px">
     <div class="col-xs-6 col-xs-offset-3">
       <ul class="list-group">
-        <li class="list-group-item list-item" *ngFor="let val of savedValues; let i = index">
-          <span>Id: {{val.id}}</span> |
-          <span>Value: {{val.value}}</span> |
-          <span>Email: {{val.email ? val.email : 'Email notfound'}}</span>
+        <li
+          class="list-group-item list-item"
+          *ngFor="let val of savedValues; let i = index"
+        >
+          <span>Id: {{ val.id }}</span> | <span>Value: {{ val.value }}</span> |
+          <span>Email: {{ val.email ? val.email : "Email notfound" }}</span>
           <span>
             <button class="btn btn-danger" (click)="onDelete(i)">
               <i class="fa fa-trash" aria-hidden="true"></i>

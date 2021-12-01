@@ -1,6 +1,8 @@
-import {AppState} from '../../store/app.reducer';
-import * as CounterActions from './counter.actions';
-import {Counter} from '../counter.model';
+import { createReducer, on } from "@ngrx/store";
+
+import { AppState } from "../../store/app.reducer";
+import * as counterActions from "./counter.actions";
+import { Counter } from "../counter.model";
 
 export interface State {
   counter: number;
@@ -13,42 +15,31 @@ export interface CounterState extends AppState {
 
 export const initialState: State = {
   counter: 0,
-  savedValues: []
+  savedValues: [],
 };
 
-export function counterReducer(state: State = initialState,
-                               action: CounterActions.counterActions) {
-  switch (action.type) {
-    case CounterActions.ADD:
-      return {
-        ...state,
-        counter: state.counter + action.payload
-      };
-    case CounterActions.SUBTRACT:
-      return {
-        ...state,
-        counter: state.counter - action.payload
-      };
-    case CounterActions.SAVE_VALUES:
-      const id = state.savedValues.length;
-      const { value, email } = action.payload;
-      const updatedObj: Counter = { id, value, email };
-      return {
-        ...state,
-        savedValues: [...state.savedValues, {...updatedObj}]
-      };
-    case CounterActions.DELETE:
-      return {
-        ...state,
-        savedValues: state.savedValues.filter((val, index) => index !== action.payload)
-      };
-    case CounterActions.RESET:
-      return {
-        ...state,
-        savedValues: [],
-        counter: 0
-      };
-    default:
-      return {...state};
-  }
-}
+export const counterReducer = createReducer(
+  initialState,
+  on(counterActions.ADD, (state: State, { val }) => ({
+    ...state,
+    counter: state.counter + val,
+  })),
+  on(counterActions.SUBTRACT, (state: State, { val }) => ({
+    ...state,
+    counter: state.counter - val,
+  })),
+  on(counterActions.SAVE_VALUES, (state: State, { val, email }) => {
+    const id = state.savedValues.length;
+    const updatedObj: Counter = { id, value: val, email };
+    return { ...state, savedValues: [...state.savedValues, { ...updatedObj }] };
+  }),
+  on(counterActions.DELETE, (state: State, { val }) => ({
+    ...state,
+    savedValues: state.savedValues.filter((value, index) => index !== val),
+  })),
+  on(counterActions.RESET, (state: State) => ({
+    ...state,
+    savedValues: [],
+    counter: 0,
+  }))
+);

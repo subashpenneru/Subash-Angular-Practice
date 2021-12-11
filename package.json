@@ -46,7 +46,6 @@
     "typescript": "~3.7.5"
   },
   "prettier": {
-    "singleQuote": true,
-    "semi": false
+    "singleQuote": true
   }
 }

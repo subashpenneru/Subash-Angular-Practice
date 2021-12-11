@@ -6,14 +6,16 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <button class="btn btn-success" (click)="btn = 1">Creation</button>
-      <button class="btn btn-danger" (click)="btn = 2">Join Creation</button>
+      <button class="btn btn-success" (click)="setBtn(1)">Creation</button>
+      <button class="btn btn-danger" (click)="setBtn(2)">Join Creation</button>
+      <button class="btn btn-danger" (click)="setBtn(3)">Error Handling</button>
     </div>
   </div>
   <div class="row">
     <div class="col-12">
-      <app-creation *ngIf="btn === 1"></app-creation>
-      <app-join-creation *ngIf="btn === 2"></app-join-creation>
+      <app-creation *ngIf="(btn | async) === 1"></app-creation>
+      <app-join-creation *ngIf="(btn | async) === 2"></app-join-creation>
+      <app-error-handle *ngIf="(btn | async) === 3"></app-error-handle>
     </div>
   </div>
 </div>

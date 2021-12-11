@@ -19,6 +19,7 @@ import {
   catchError,
   concatAll,
   concatMapTo,
+  delay,
   exhaust,
   first,
   map,
@@ -36,7 +37,9 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  btn = 2;
+  btn = of(JSON.parse(localStorage.getItem('selectedVal')) || 0).pipe(
+    delay(500)
+  );
 
   constructor(private http: HttpClient) {}
 
@@ -54,5 +57,10 @@ export class AppComponent implements OnInit {
       .subscribe((res) => {
         console.log('Value: -', res);
       });
+  }
+
+  setBtn(val: number) {
+    localStorage.setItem('selectedVal', JSON.stringify(val));
+    location.reload();
   }
 }

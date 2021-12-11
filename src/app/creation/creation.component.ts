@@ -14,6 +14,7 @@ export class CreationComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    console.clear();
     /**
      * ajax
      */

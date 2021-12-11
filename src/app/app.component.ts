@@ -36,7 +36,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  btn = 0;
+  btn = 2;
 
   constructor(private http: HttpClient) {}
 

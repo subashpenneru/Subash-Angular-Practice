@@ -1,33 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import {
-  defer,
-  empty,
-  from,
-  fromEvent,
-  fromEventPattern,
-  generate,
-  iif,
-  interval,
-  of,
-  range,
-  throwError,
-  timer,
-} from 'rxjs';
-import { ajax } from 'rxjs/ajax';
-import {
-  catchError,
-  concatAll,
-  concatMapTo,
-  delay,
-  exhaust,
-  first,
-  map,
-  mergeAll,
-  mergeMap,
-  startWith,
-  switchAll,
-} from 'rxjs/operators';
+import { of } from 'rxjs';
+import { concatAll, delay, map } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 

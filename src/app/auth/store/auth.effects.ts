@@ -1,16 +1,35 @@
-import { Actions, createEffect, Effect, ofType } from "@ngrx/effects";
+import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { map, switchMap, tap } from "rxjs/operators";
-import { Observable, Observer } from "rxjs";
+import { Observable, Observer, zip } from "rxjs";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 
 import * as AuthActions from "./auth.actions";
 import { User } from "../../shared/user.model";
 import { AuthService } from "../auth.service";
+import { selectQueryParams, selectUrl } from "src/app/store/router.selectors";
+import { Store } from "@ngrx/store";
+import { AppState } from "src/app/store/app.reducer";
 
 @Injectable()
 export class AuthEffects {
   private expiresIn = 3 * 60;
+
+  // onLoad$ = createEffect(
+  //   () =>
+  //     this.actions$.pipe(
+  //       switchMap(() =>
+  //         zip(
+  //           this.store.select(selectUrl),
+  //           this.store.select(selectQueryParams)
+  //         )
+  //       ),
+  //       tap((res) => {
+  //         console.log(res);
+  //       })
+  //     ),
+  //   { dispatch: false }
+  // );
 
   authLogin = createEffect(() =>
     this.actions$.pipe(
@@ -76,6 +95,7 @@ export class AuthEffects {
   constructor(
     private actions$: Actions,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private store: Store<AppState>
   ) {}
 }

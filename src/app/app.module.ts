@@ -30,15 +30,15 @@ import { environment } from "src/environments/environment";
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    FormsModule,
     StoreModule.forRoot(appReducer),
     EffectsModule.forRoot([AuthEffects]),
-    StoreRouterConnectingModule.forRoot(),
+    AppRoutingModule,
     StoreDevtoolsModule.instrument({
       name: "Counter App",
       logOnly: environment.production,
     }),
+    StoreRouterConnectingModule.forRoot(),
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

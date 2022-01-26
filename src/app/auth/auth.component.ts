@@ -1,15 +1,12 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
 import { NgForm } from "@angular/forms";
 import { Store } from "@ngrx/store";
-import { Subscription } from "rxjs";
-import { map } from "rxjs/operators";
+import { Subject, Subscription } from "rxjs";
+import { takeUntil } from "rxjs/operators";
 
 import * as fromApp from "../store/app.reducer";
-import * as fromAuth from "./store/auth.reducer";
 import * as AuthActions from "./store/auth.actions";
-import { User } from "../shared/user.model";
-import { selectLoading } from "./store/selectors";
+import { selectIsSignUp, selectLoading, selectUser } from "./store/selectors";
 
 @Component({
   selector: "app-auth",
@@ -17,31 +14,21 @@ import { selectLoading } from "./store/selectors";
   styleUrls: ["./auth.component.css"],
 })
 export class AuthComponent implements OnInit, OnDestroy {
-  routePath: string;
-  isSignUp = false;
   storeSub: Subscription;
+  destroy$ = new Subject<void>();
 
-  constructor(
-    private route: ActivatedRoute,
-    private store: Store<fromApp.AppState>
-  ) {}
+  constructor(private store: Store<fromApp.AppState>) {}
 
   loading$ = this.store.select(selectLoading);
+  isSignUp$ = this.store.select(selectIsSignUp);
 
   ngOnInit(): void {
-    this.route.url.subscribe((url) => {
-      this.routePath = url[1].path;
-      this.isSignUp = this.routePath === "sign-up";
-    });
-
-    this.storeSub = this.store
-      .select("auth")
-      .pipe(
-        map((auth: fromAuth.State) => {
-          return auth.user;
-        })
-      )
-      .subscribe();
+    this.store
+      .select(selectUser)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((user) => {
+        console.log(user);
+      });
   }
 
   onSubmit(form: NgForm) {
@@ -50,8 +37,7 @@ export class AuthComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.storeSub) {
-      this.storeSub.unsubscribe();
-    }
+    // this.destroy$.next();
+    this.destroy$.complete();
   }
 }

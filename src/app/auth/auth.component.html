@@ -33,7 +33,8 @@
         </div>
         <div class="form-group">
           <button class="btn btn-success" type="submit" [disabled]="!f.valid">
-            {{ isSignUp ? "Sign up" : "Sign In" }}
+            <ng-template [ngIf]="isSignUp$ | async"> Sign Up </ng-template>
+            <ng-template [ngIf]="!(isSignUp$ | async)">Sign In</ng-template>
           </button>
           |
           <button class="btn btn-danger" type="button" (click)="f.reset()">

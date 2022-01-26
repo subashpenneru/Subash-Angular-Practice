@@ -9,6 +9,7 @@ import * as fromApp from "../store/app.reducer";
 import * as fromAuth from "./store/auth.reducer";
 import * as AuthActions from "./store/auth.actions";
 import { User } from "../shared/user.model";
+import { selectLoading } from "./store/selectors";
 
 @Component({
   selector: "app-auth",
@@ -18,13 +19,14 @@ import { User } from "../shared/user.model";
 export class AuthComponent implements OnInit, OnDestroy {
   routePath: string;
   isSignUp = false;
-  isLoading = false;
   storeSub: Subscription;
 
   constructor(
     private route: ActivatedRoute,
     private store: Store<fromApp.AppState>
   ) {}
+
+  loading$ = this.store.select(selectLoading);
 
   ngOnInit(): void {
     this.route.url.subscribe((url) => {
@@ -36,17 +38,13 @@ export class AuthComponent implements OnInit, OnDestroy {
       .select("auth")
       .pipe(
         map((auth: fromAuth.State) => {
-          this.isLoading = auth.isLoading;
           return auth.user;
         })
       )
-      .subscribe((user: User) => {
-        console.log(user);
-      });
+      .subscribe();
   }
 
   onSubmit(form: NgForm) {
-    this.isLoading = true;
     const { email } = form.value;
     this.store.dispatch(AuthActions.LOGIN_START({ payload: email }));
   }

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Store } from "@ngrx/store";
-import { Subject, Subscription } from "rxjs";
+import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 
 import * as fromApp from "../store/app.reducer";
@@ -14,7 +14,6 @@ import { selectIsSignUp, selectLoading, selectUser } from "./store/selectors";
   styleUrls: ["./auth.component.css"],
 })
 export class AuthComponent implements OnInit, OnDestroy {
-  storeSub: Subscription;
   destroy$ = new Subject<void>();
 
   constructor(private store: Store<fromApp.AppState>) {}

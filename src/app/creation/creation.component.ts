@@ -1,7 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { empty, from, generate, iif, of, range, throwError, timer } from 'rxjs';
+import {
+  empty,
+  from,
+  generate,
+  iif,
+  interval,
+  of,
+  range,
+  throwError,
+  timer,
+} from 'rxjs';
 import { ajax } from 'rxjs/ajax';
-import { catchError, map, startWith } from 'rxjs/operators';
+import { catchError, map, mergeMap, startWith } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 

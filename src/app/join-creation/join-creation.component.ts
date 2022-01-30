@@ -50,8 +50,8 @@ export class JoinCreationComponent implements OnInit {
     /**
      * merge
      */
-    merge(fromEvent(document, 'click'), interval(1000).pipe(take(4))).subscribe(
-      (res) => console.log('merge', res)
+    merge(of(1, 2, 3, 4), interval(1000).pipe(take(4))).subscribe((res) =>
+      console.log('merge', res)
     );
 
     /**
@@ -76,7 +76,7 @@ export class JoinCreationComponent implements OnInit {
     /**
      * zip
      */
-    zip(of(27, 25, 29), of('Foo', 'Bar', 'Beer'), of(true, true, false))
+    zip(of(27, 25), of('Foo', 'Bar', 'Beer'), of(true, true, false))
       .pipe(map(([age, name, isDev]) => ({ age, name, isDev })))
       .subscribe((res) => console.log('zip', res));
   }

@@ -1,7 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { of } from 'rxjs';
-import { concatAll, delay, map } from 'rxjs/operators';
+import {
+  concatAll,
+  delay,
+  exhaust,
+  first,
+  map,
+  mergeAll,
+  switchAll,
+} from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 

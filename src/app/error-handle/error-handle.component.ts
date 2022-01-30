@@ -35,7 +35,7 @@ export class ErrorHandleComponent implements OnInit {
         retry(2)
       )
       .subscribe({
-        next: (val) => console.log('retry', val),
+        next: (val) => console.log('SUCCESS', val),
         error: (val) => console.log(`${val}: Retried 2 times then quit!`),
       });
 

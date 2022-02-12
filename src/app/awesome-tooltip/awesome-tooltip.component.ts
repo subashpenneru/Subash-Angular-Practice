@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from "@angular/core";
 })
 export class AwesomeTooltipComponent implements OnInit {
   @Input() text: any;
-  @Input() type = "default";
+  @Input() type: "default" | "custom" = "default";
 
   constructor() {}
 

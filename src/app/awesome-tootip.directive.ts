@@ -20,15 +20,14 @@ import { AwesomeTooltipComponent } from "./awesome-tooltip/awesome-tooltip.compo
 })
 export class AwesomeTootipDirective implements OnInit {
   @Input("appAwesomeTootip") text = "";
-  @Input("tooltipType") type = "default";
+  @Input("tooltipType") type: "default" | "custom" = "default";
   private overlayRef: OverlayRef;
 
   @HostListener("mouseenter") show() {
     const tooltipPortal = new ComponentPortal(AwesomeTooltipComponent);
 
-    const tooltipRef: ComponentRef<AwesomeTooltipComponent> = this.overlayRef.attach(
-      tooltipPortal
-    );
+    const tooltipRef: ComponentRef<AwesomeTooltipComponent> =
+      this.overlayRef.attach(tooltipPortal);
 
     tooltipRef.instance.text = this.text;
     tooltipRef.instance.type = this.type;

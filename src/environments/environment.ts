@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  alertTimeout: 10, // in seconds
 }
 
 /*

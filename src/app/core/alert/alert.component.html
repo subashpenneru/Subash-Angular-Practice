@@ -1,0 +1,9 @@
+<div class="alert" *ngFor="let alert of alerts" [class]="alert.type">
+  <div class="message">
+    <h4>{{ alert.title }}</h4>
+    <p>{{ alert.message }}</p>
+  </div>
+  <div class="close">
+    <button (click)="removeAlert(alert.id)"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+</div>

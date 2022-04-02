@@ -1,0 +1,79 @@
+:host.app-alert {
+  display: block;
+  width: 300px;
+  position: fixed;
+  right: 10px;
+  top: 10px;
+}
+
+.alert {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  padding: 1rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  animation-duration: 0.5s;
+  animation-name: slidein;
+}
+
+.info {
+  color: var(--info);
+  background-color: var(--bg-info);
+  border-color: var(--border-info);
+}
+
+.danger {
+  color: var(--danger);
+  background-color: var(--bg-danger);
+  border-color: var(--border-danger);
+}
+
+.success {
+  color: var(--success);
+  background-color: var(--bg-success);
+  border-color: var(--border-success);
+}
+
+.warning {
+  color: var(--warning);
+  background-color: var(--bg-warning);
+  border-color: var(--border-warning);
+}
+
+.close button {
+  border: none;
+  background-color: transparent;
+}
+
+.info button:focus {
+  outline-color: var(--info);
+}
+.danger button:focus {
+  outline-color: var(--danger);
+}
+.success button:focus {
+  outline-color: var(--success);
+}
+.warning button:focus {
+  outline-color: var(--warning);
+}
+
+.fa-xmark {
+  cursor: pointer;
+  font-size: x-large;
+}
+
+@keyframes slidein {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

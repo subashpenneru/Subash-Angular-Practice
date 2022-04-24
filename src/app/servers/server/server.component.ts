@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { Server } from 'src/app/shared/server.model';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
+import { Server } from 'src/app/shared/server.model';
 
 @Component({
   selector: 'app-server',
   templateUrl: './server.component.html',
-  styleUrls: ['./server.component.css']
+  styleUrls: ['./server.component.css'],
 })
-export class ServerComponent implements OnInit {
-
+export class ServerComponent {
   server: Server;
 
   constructor(private route: ActivatedRoute) {
@@ -19,10 +19,6 @@ export class ServerComponent implements OnInit {
     // })
 
     this.server = this.route.snapshot.data['server'];
-    this.route.data.subscribe(res => this.server = res.server);
+    this.route.data.subscribe((res) => (this.server = res.server));
   }
-
-  ngOnInit(): void {
-  }
-
 }

@@ -1,25 +1,22 @@
 <div class="servers-container">
-    <div class="server" *ngFor="let server of serversData">
-        <h1>{{server.name}}</h1>
-        <div class="server-status" [ngClass]="getServerStatusColor(server.status)">
-            <div>
-                <p>Status: {{server.status}}</p>
-            </div>
-            <div>
-                <span class="btn btn-outline-primary status-btn" 
-                    (click)="navigateToServer(server.id)">View</span>
-                <span class="btn btn-outline-primary status-btn" 
-                    [routerLink]="['/servers', server.id, 'edit']"
-                    [queryParams]="{allowEdit: server.id === 3 ? '1' : '0'}" 
-                    [fragment]="'loading'">Edit</span>
-            </div>
-        </div>
+  <div class="server" *ngFor="let server of serversData">
+    <h1>{{server.name}}</h1>
+    <div class="server-status" [ngClass]="getServerStatusColor(server.status)">
+      <div>
+        <p>Status: {{server.status}}</p>
+      </div>
+      <div>
+        <span class="btn btn-outline-primary status-btn" (click)="navigateToServer(server.id)">View</span>
+        <span class="btn btn-outline-primary status-btn" [routerLink]="['/servers', server.id, 'edit']"
+          [queryParams]="{allowEdit: server.id === 3 ? '1' : '0'}" [fragment]="'loading'">Edit</span>
+      </div>
     </div>
+  </div>
 </div>
 
 <div style="margin-top: 30px;">
-    <div class="loader" *ngIf="(dataServ.childNavigationLoading | async); else navigation"></div>
-    <ng-template #navigation>
-        <router-outlet></router-outlet>
-    </ng-template>
+  <div class="loader" *ngIf="(dataServ.childNavigationLoading | async); else navigation"></div>
+  <ng-template #navigation>
+    <router-outlet></router-outlet>
+  </ng-template>
 </div>

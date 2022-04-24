@@ -1,18 +1,19 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { HttpClientModule } from "@angular/common/http";
+import { HttpClientInMemoryWebApiModule } from "angular-in-memory-web-api";
 
-import { AppComponent } from './app.component';
-import { AuthService } from './shared/auth.service';
-import { HomeComponent } from './home/home.component';
-import { AuthGuard, } from './auth.guard';
-import { AppRoutingModule } from './app-routing.module';
-import { UsersComponent } from './users/users.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { InMemoryService } from './shared/inMemory.service';
-import { SigninComponent } from './users/auth/signin/signin.component';
+import { AppRoutingModule } from "./app-routing.module";
 
+import { AppComponent } from "./app.component";
+import { HomeComponent } from "./home/home.component";
+import { UsersComponent } from "./users/users.component";
+import { NotFoundComponent } from "./not-found/not-found.component";
+import { SigninComponent } from "./users/auth/signin/signin.component";
+
+import { AuthGuard } from "./auth.guard";
+import { AuthService } from "./shared/auth.service";
+import { InMemoryService } from "./shared/inMemory.service";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { SigninComponent } from './users/auth/signin/signin.component';
     HomeComponent,
     UsersComponent,
     NotFoundComponent,
-    SigninComponent
+    SigninComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,10 +29,7 @@ import { SigninComponent } from './users/auth/signin/signin.component';
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryService),
   ],
-  providers: [
-    AuthService,
-    AuthGuard
-  ],
-  bootstrap: [AppComponent]
+  providers: [AuthService, AuthGuard],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

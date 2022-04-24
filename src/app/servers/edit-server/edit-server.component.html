@@ -1,23 +1,20 @@
 <div class="server-edit--main">
-    <h2>Edit Server</h2>
-    <div class="loader" *ngIf="!server"></div>
-    <div *ngIf="server">
-        <div class="form-group">
-            <label for="serverName"></label>
-            <input type="text" id="serverName" class="form-control" 
-                [(ngModel)]="server.name"
-                readonly>
-        </div>
-        <div class="form-group">
-            <label for="serverStatus"></label>
-            <select id="serverStatus" class="form-control" 
-                [(ngModel)]="serverStatus" [disabled]="!allowEdit">
-                <option value="online">Online</option>
-                <option value="offline">Offline</option>
-            </select>
-        </div>
-        <button class="btn btn-primary" (click)="onUpdateServer()">
-            {{ allowEdit ? 'Update Server Status' : 'You Have No Permissions' }}
-        </button>
+  <h2>Edit Server</h2>
+  <div class="loader" *ngIf="!server"></div>
+  <div *ngIf="server">
+    <div class="form-group">
+      <label for="serverName"></label>
+      <input type="text" id="serverName" class="form-control" [(ngModel)]="server.name" readonly>
     </div>
+    <div class="form-group">
+      <label for="serverStatus"></label>
+      <select id="serverStatus" class="form-control" [(ngModel)]="serverStatus" [disabled]="!allowEdit">
+        <option value="online">Online</option>
+        <option value="offline">Offline</option>
+      </select>
+    </div>
+    <button class="btn btn-primary" (click)="onUpdateServer()">
+      {{ allowEdit ? 'Update Server Status' : 'You Have No Permissions' }}
+    </button>
+  </div>
 </div>

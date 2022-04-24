@@ -1,20 +1,18 @@
-import { Component } from '@angular/core';
-import { AuthService } from './shared/auth.service';
-import { Router } from '@angular/router';
-import { DataService } from './shared/data.service';
+import { Component } from "@angular/core";
+
+import { AuthService } from "./shared/auth.service";
+import { DataService } from "./shared/data.service";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
-
   isUserLogged = false;
 
-  constructor(private authServ: AuthService, private router: Router, 
-    public dataServ: DataService) {
-    this.authServ.isLoggedIn.subscribe(res => this.isUserLogged = res);
+  constructor(private authServ: AuthService, public dataServ: DataService) {
+    this.authServ.isLoggedIn.subscribe((res) => (this.isUserLogged = res));
   }
 
   onLogOut() {

@@ -1,15 +1,14 @@
 <div class="container user-main">
-    <div class="row">
-        <div class="col-lg-2"></div>
-        <div class="col-lg-8">
-            <div *ngFor="let user of users" class="users-list">
-                <ul class="list-group">
-                    <li class="list-group-item" 
-                        [ngClass]="getUserRoleClass(user['role'])">{{user.name}}</li>
-                    <li class="list-group-item">{{user.email}}</li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-lg-2"></div>
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+      <div *ngFor="let user of users" class="users-list">
+        <ul class="list-group">
+          <li class="list-group-item" [ngClass]="getUserRoleClass(user['role'])">{{user.name}}</li>
+          <li class="list-group-item">{{user.email}}</li>
+        </ul>
+      </div>
     </div>
+    <div class="col-lg-2"></div>
+  </div>
 </div>

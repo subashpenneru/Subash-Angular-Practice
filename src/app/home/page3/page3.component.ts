@@ -1,15 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-page3',
-  templateUrl: './page3.component.html',
-  styleUrls: ['./page3.component.css']
+  template: `<p>page3 works!</p> `,
 })
-export class Page3Component implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class Page3Component {
+  constructor() {}
 }

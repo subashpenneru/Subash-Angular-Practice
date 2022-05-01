@@ -8,7 +8,7 @@ import {
 import { NotFoundComponent } from './not-found/not-found.component';
 import { UsersComponent, SigninComponent } from './users';
 import { AuthGuard } from './auth.guard';
-import { AuthService, SidebarComponent, SidebarService } from './shared';
+import { AuthService, SidebarComponent } from './shared';
 
 export const components = [
   AppComponent,
@@ -24,4 +24,4 @@ export const components = [
 
 export const bootstrapCMP = [AppComponent];
 
-export const services = [AuthService, AuthGuard, SidebarService];
+export const services = [AuthService, AuthGuard];

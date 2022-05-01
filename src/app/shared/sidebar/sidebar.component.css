@@ -1,0 +1,33 @@
+.sidebar {
+  position: fixed;
+  width: 450px;
+  max-width: 70%;
+  height: 100%;
+  right: 0;
+  top: 0;
+  z-index: 200;
+  background-color: #fff;
+  transition: transform 0.3s ease-out;
+  padding: 1rem;
+  border-left: 1px solid #444;
+}
+
+.backdrop {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.Open {
+  display: block;
+  transform: translateX(0);
+}
+
+.Close {
+  display: none;
+  transform: translateX(-100%);
+}

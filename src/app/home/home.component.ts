@@ -1,10 +1,8 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
 @Component({
-  selector: "app-home",
-  template: `<div class="main-home">
-    <h1>Welcome to Server Manager</h1>
-  </div>`,
+  selector: 'app-home',
+  templateUrl: './home.component.html',
   styles: [
     `
       .main-home {

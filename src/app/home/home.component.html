@@ -1,0 +1,20 @@
+<div class="main-home">
+  <h1>Welcome to Server Manager</h1>
+
+  <div class="row" style="margin: 2rem;">
+    <div class="col">
+      <a class="btn btn-primary" style="margin-right: 1rem;" [routerLink]="[{outlets: {'page1-route': ['page1']}}]"
+        role="link">Page 1</a>
+      <a class="btn btn-success" style="margin-right: 1rem;" [routerLink]="[{outlets: {'page1-route': ['page2']}}]"
+        role="link">Page 2</a>
+      <a class="btn btn-default" style="margin-right: 1rem;" [routerLink]="[{outlets: {'page1-route': ['page3']}}]"
+        role="link">Page 3</a>
+    </div>
+  </div>
+
+  <div class="row" style="margin: 2rem;">
+    <div class="col">
+      <router-outlet name="page1-route"></router-outlet>
+    </div>
+  </div>
+</div>

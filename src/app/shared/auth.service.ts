@@ -1,7 +1,7 @@
-import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
-import { User } from "./user.model";
+import { User } from './user.model';
 
 @Injectable()
 export class AuthService {

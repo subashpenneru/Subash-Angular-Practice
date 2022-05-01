@@ -1,0 +1,12 @@
+<div class="backdrop" [ngClass]="[show ? 'Open' : 'Close']" (click)="onClose()"></div>
+<div class="sidebar" [ngClass]="[show ? 'Open' : 'Close']">
+  <h1>Sidebar Component</h1>
+  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus natus officiis sed recusandae voluptates ut,
+    nihil assumenda earum dolore vel quam soluta dolores voluptas, consequuntur impedit, cupiditate fuga quia voluptatum
+    harum dolor. Quis, error quibusdam. Harum sequi labore qui repellendus exercitationem, possimus, nobis officia sunt
+    aut pariatur voluptatem quasi! Ratione!</p>
+
+  <div class="actions pull-right">
+    <button class="btn btn-default" (click)="onClose()">CLOSE</button>
+  </div>
+</div>

@@ -3,18 +3,14 @@
     <h2>Servers</h2>
   </div>
   <div>
-    <span class="main-header--item"
-      routerLink="/servers" routerLinkActive="active">
+    <span class="main-header--item" (click)="onNavigate()">
       Servers List
     </span>
-    <span class="main-header--item" 
-      routerLink="/users" routerLinkActive="active">
+    <span class="main-header--item" routerLink="/users" routerLinkActive="active">
       Users
     </span>
-    <span class="main-header--item active" *ngIf="!isUserLogged"
-      routerLink="/signin">Login</span>
-    <span class="main-header--item active" *ngIf="isUserLogged"
-    (click)="onLogOut()">Logout</span>
+    <span class="main-header--item active" *ngIf="!isUserLogged" routerLink="/signin">Login</span>
+    <span class="main-header--item active" *ngIf="isUserLogged" (click)="onLogOut()">Logout</span>
   </div>
 </div>
 
@@ -22,3 +18,5 @@
 <ng-template #navigation>
   <router-outlet></router-outlet>
 </ng-template>
+
+<router-outlet name="sidebarRoute"></router-outlet>
